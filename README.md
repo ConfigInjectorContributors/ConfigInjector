@@ -38,7 +38,7 @@ Here's how we declare the settings:
     {
     }
 
-... and here's how we set them in our [web|app].config:
+Here's how we set them in our [web|app].config:
 
     <?xml version="1.0" encoding="utf-8" ?>
     <configuration>
@@ -47,6 +47,15 @@ Here's how we declare the settings:
         <add key="SmtpPortConfigurationSetting" value="25" />
       </appSettings>
     </configuration>
+
+... and here's how we provide mock values for them in our unit tests:
+
+    var smtpHost = new SmtpHostConfigurationSetting {Value = "smtp.example.com"};
+    var smtpPort = new SmtpPortConfigurationSetting {Value = 25};
+    
+    var emailSender = new EmailSender(smtpHost, smtpPort);
+    
+    emailSender.Send(someTestMessage);
 
 ## Getting started
 
