@@ -1,4 +1,4 @@
-﻿namespace ConfigInjector
+﻿namespace ConfigInjector.Extensions
 {
     public static class StringExtensions
     {

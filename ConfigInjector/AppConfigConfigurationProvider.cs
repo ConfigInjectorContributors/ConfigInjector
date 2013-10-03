@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Configuration;
+using ConfigInjector.Extensions;
 
 namespace ConfigInjector
 {
-    public class AppConfigConfigurationProvider
+    internal class AppConfigConfigurationProvider
     {
         public IConfigurationSetting GetConfigSettingFor(Type type)
         {
