@@ -9,6 +9,15 @@ namespace ConfigInjector
         private Action<IConfigurationSetting> _registerAsSingleton;
         private Assembly[] _assemblies;
 
+        private ConfigurationConfigurator()
+        {
+        }
+
+        public static ConfigurationConfigurator RegisterConfigurationSettings()
+        {
+            return new ConfigurationConfigurator();
+        }
+
         public ConfigurationConfigurator FromAssemblies(params Assembly[] assemblies)
         {
             _assemblies = assemblies;

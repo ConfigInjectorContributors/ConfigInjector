@@ -1,15 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
+using ConfigInjector;
 
 namespace Sample.WithAutofac
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            using (var container = CreateContainer())
+            {
+                var deepThought = container.Resolve<DeepThought>();
+
+                deepThought.DoSomeThinking();
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to quit.");
+            Console.ReadKey();
+        }
+
+        private static IContainer CreateContainer()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<DeepThought>();
+
+            ConfigurationConfigurator.RegisterConfigurationSettings()
+                                     .FromAssemblies(typeof (DeepThought).Assembly)
+                                     .RegisterWithContainer(configSetting => builder.RegisterInstance(configSetting).AsSelf().SingleInstance())
+                                     .DoYourThing();
+
+            return builder.Build();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Sample.ConfigSettings;
+﻿using System;
+using Sample.ConfigSettings;
 
 namespace Sample
 {
@@ -21,6 +22,12 @@ namespace Sample
         public int Answer
         {
             get { return _answer; }
+        }
+
+        public void DoSomeThinking()
+        {
+            Console.WriteLine("Q: {0}", _question);
+            Console.WriteLine("A: {0}", _answer);
         }
     }
 }
