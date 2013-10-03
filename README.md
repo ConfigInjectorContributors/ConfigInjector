@@ -36,6 +36,11 @@ Here's how we declare the settings:
     // This will give us a strongly-typed int setting.
     public class SmtpPortConfigurationSetting : ConfigurationSetting<int>
     {
+        protected override System.Collections.Generic.IEnumerable<string> ValidationErrors(int value)
+        {
+            if (value <= 0) yield return "TCP port numbers cannot be negative.";
+            if (value > 65535) yield return "TCP port numbers cannot be greater than 65535.";
+        }
     }
 
 Here's how we set them in our [web|app].config:

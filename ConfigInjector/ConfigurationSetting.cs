@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ConfigInjector
 {
     [DebuggerDisplay("{GetType().Name,nq}: {Value,nq}")]
-    public abstract class ConfigurationSetting<T>: IConfigurationSetting
+    public abstract class ConfigurationSetting<T> : IConfigurationSetting
     {
         private bool _initialized;
         private T _value;
@@ -16,8 +18,25 @@ namespace ConfigInjector
             {
                 if (_initialized) throw new InvalidOperationException("Already initialised.");
 
+                Validate(value);
+
                 _value = value;
                 _initialized = true;
+            }
+        }
+
+        protected virtual IEnumerable<string> ValidationErrors(T value)
+        {
+            yield break;
+        }
+
+        private void Validate(T value)
+        {
+            var validationErrors = ValidationErrors(value).ToArray();
+
+            if (validationErrors.Any())
+            {
+                throw new ConfigurationSettingValidationException(validationErrors);
             }
         }
 

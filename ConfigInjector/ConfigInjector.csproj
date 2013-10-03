@@ -44,9 +44,15 @@
     <Compile Include="ConfigurationConfigurator.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="ConfigurationSetting.cs" />
+    <Compile Include="ConfigurationSettingValidationException.cs" />
     <Compile Include="IConfigurationSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ConfigInjector.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
