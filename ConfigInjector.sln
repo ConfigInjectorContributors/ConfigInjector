@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WithWindsor", "Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WithNinject", "Sample.WithNinject\Sample.WithNinject.csproj", "{0285D32A-2222-4C48-B1D2-8070ED518450}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{47A972A5-489B-4F5F-BEAC-8C5F2202E313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,5 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79199283-6541-4370-BA9B-2BA1ADF818EF} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
+		{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
+		{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
+		{0285D32A-2222-4C48-B1D2-8070ED518450} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
+		{967394B0-1AF3-48AF-9624-AE45E8E0D3DC} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 	EndGlobalSection
 EndGlobal
