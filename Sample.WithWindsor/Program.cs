@@ -29,7 +29,9 @@ namespace Sample.WithWindsor
 
             ConfigurationConfigurator.RegisterConfigurationSettings()
                                      .FromAssemblies(typeof (DeepThought).Assembly)
-                                     .RegisterWithContainer(configSetting => container.Register(Component.For(configSetting.GetType()).Instance(configSetting).LifestyleSingleton()))
+                                     .RegisterWithContainer(configSetting => container.Register(Component.For(configSetting.GetType())
+                                                                                                         .Instance(configSetting)
+                                                                                                         .LifestyleSingleton()))
                                      .DoYourThing();
 
             return container;

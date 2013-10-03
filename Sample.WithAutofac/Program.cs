@@ -28,7 +28,9 @@ namespace Sample.WithAutofac
 
             ConfigurationConfigurator.RegisterConfigurationSettings()
                                      .FromAssemblies(typeof (DeepThought).Assembly)
-                                     .RegisterWithContainer(configSetting => builder.RegisterInstance(configSetting).AsSelf().SingleInstance())
+                                     .RegisterWithContainer(configSetting => builder.RegisterInstance(configSetting)
+                                                                                    .AsSelf()
+                                                                                    .SingleInstance())
                                      .DoYourThing();
 
             return builder.Build();

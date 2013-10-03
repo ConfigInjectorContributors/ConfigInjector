@@ -28,7 +28,8 @@ namespace Sample.WithNinject
 
             ConfigurationConfigurator.RegisterConfigurationSettings()
                                      .FromAssemblies(typeof (DeepThought).Assembly)
-                                     .RegisterWithContainer(configSetting => kernel.Bind(configSetting.GetType()).ToConstant(configSetting))
+                                     .RegisterWithContainer(configSetting => kernel.Bind(configSetting.GetType())
+                                                                                   .ToConstant(configSetting))
                                      .DoYourThing();
 
             return kernel;
