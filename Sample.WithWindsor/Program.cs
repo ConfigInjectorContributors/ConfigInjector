@@ -2,6 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using ConfigInjector;
+using ConfigInjector.Configuration;
 
 namespace Sample.WithWindsor
 {

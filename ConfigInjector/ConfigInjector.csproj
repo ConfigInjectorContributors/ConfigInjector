@@ -40,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfigConfigurationProvider.cs" />
-    <Compile Include="ConfigurationConfigurator.cs" />
+    <Compile Include="Configuration\ConfigurationConfigurator.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="ConfigurationSetting.cs" />
     <Compile Include="ConfigurationSettingValidationException.cs" />
+    <Compile Include="Configuration\DoYourThingConfigurationConfigurator.cs" />
+    <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="IConfigurationSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="SettingsRegistrationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ConfigInjector.nuspec">

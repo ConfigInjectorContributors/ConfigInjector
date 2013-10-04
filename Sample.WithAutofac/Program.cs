@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using ConfigInjector;
+using ConfigInjector.Configuration;
 
 namespace Sample.WithAutofac
 {

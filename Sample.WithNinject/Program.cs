@@ -1,5 +1,6 @@
 ﻿using System;
 using ConfigInjector;
+using ConfigInjector.Configuration;
 using Ninject;
 
 namespace Sample.WithNinject
