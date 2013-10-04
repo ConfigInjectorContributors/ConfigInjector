@@ -26,8 +26,8 @@ namespace Sample
 
         public void DoSomeThinking()
         {
-            Console.WriteLine("Q: {0}", _question);
-            Console.WriteLine("A: {0}", _answer);
+            Console.WriteLine("Q: {0}", (string)_question);
+            Console.WriteLine("A: {0}", (int) _answer);
         }
     }
 }
