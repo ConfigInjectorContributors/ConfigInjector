@@ -60,7 +60,9 @@ namespace ConfigInjector
             if (settingValueString == null) throw new InvalidOperationException("Setting {0} was not found in [web|app].config".FormatWith(settingKey));
 
             var settingType = type.GetProperty("Value").PropertyType;
-            var settingValue = (dynamic) Convert.ChangeType(settingValueString, settingType);
+            var settingValue = (settingType.BaseType == typeof(Enum))
+                ? Enum.Parse(settingType, settingValueString)
+                : (dynamic)Convert.ChangeType(settingValueString, settingType);
 
             var setting = Activator.CreateInstance(type);
             ((dynamic) setting).Value = settingValue;
