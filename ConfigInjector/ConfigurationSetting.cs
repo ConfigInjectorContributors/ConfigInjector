@@ -25,6 +25,11 @@ namespace ConfigInjector
             }
         }
 
+        protected virtual T ConvertStringValue(string settingValueString)
+        {
+            return (T) Convert.ChangeType(settingValueString, typeof (T));
+        }
+
         protected virtual IEnumerable<string> ValidationErrors(T value)
         {
             yield break;
@@ -38,6 +43,11 @@ namespace ConfigInjector
             {
                 throw new ConfigurationSettingValidationException(validationErrors);
             }
+        }
+
+        void IConfigurationSetting.SetValueFromString(string settingValueString)
+        {
+            Value = ConvertStringValue(settingValueString);
         }
 
         public static implicit operator T(ConfigurationSetting<T> setting)
