@@ -59,13 +59,10 @@ namespace ConfigInjector
 
             if (settingValueString == null) throw new InvalidOperationException("Setting {0} was not found in [web|app].config".FormatWith(settingKey));
 
-            var settingType = type.GetProperty("Value").PropertyType;
-            var settingValue = (dynamic) Convert.ChangeType(settingValueString, settingType);
+            var setting = (IConfigurationSetting)Activator.CreateInstance(type);
+            setting.SetValueFromString(settingValueString);
 
-            var setting = Activator.CreateInstance(type);
-            ((dynamic) setting).Value = settingValue;
-
-            return (IConfigurationSetting) setting;
+            return setting;
         }
 
         private void AssertThatNoAdditionalSettingsExist()
