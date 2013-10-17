@@ -121,4 +121,17 @@ You can pick your favourite container from the list below or roll your own.
 
     return kernel;
 
+# FAQ
+## What types can I use?
 
+* Any type that has a public static .Parse(string someValue) method.
+    * This includes TimeSpan, DateTime and a bunch of others.
+    * Yes, you can use your own custom types here if you wish. Just don't get too tricky...
+* Enums
+    * Just remember that they're case-sensitive - and they *should* be case-sensitive, because SomeEnum.Foo and SomeEnum.FOO are different.
+* Uris
+* Any type that Convert.ChangeType can convert from a string.
+
+## Can I provide my own type converters?
+
+Not yet. The internal infrastructure is there but I haven't written a configuration hook yet. If you need it before I build it, send me a pull request for a configuration hook and then just implement the IValueParser interface.
