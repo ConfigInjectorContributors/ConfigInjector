@@ -65,7 +65,7 @@ namespace ConfigInjector
         internal static IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
         {
             var settingType = type.GetProperty("Value").PropertyType;
-            var settingValue = SettingValueConverter.ParseSettingValue(settingType, settingValueString);
+            var settingValue = (dynamic)SettingValueConverter.ParseSettingValue(settingType, settingValueString);
 
             var setting = (IConfigurationSetting) Activator.CreateInstance(type);
             ((dynamic) setting).Value = settingValue;
