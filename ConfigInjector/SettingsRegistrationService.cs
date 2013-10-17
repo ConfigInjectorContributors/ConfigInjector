@@ -14,14 +14,19 @@ namespace ConfigInjector
         private readonly Assembly[] _assemblies;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+        private readonly SettingValueConverter _settingValueConverter;
 
         private IConfigurationSetting[] _stronglyTypedSettings;
 
-        public SettingsRegistrationService(Assembly[] assemblies, Action<IConfigurationSetting> registerAsSingleton, bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses)
+        public SettingsRegistrationService(Assembly[] assemblies,
+                                           Action<IConfigurationSetting> registerAsSingleton,
+                                           bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
+                                           SettingValueConverter settingValueConverter)
         {
             _assemblies = assemblies;
             _registerAsSingleton = registerAsSingleton;
             _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+            _settingValueConverter = settingValueConverter;
         }
 
         public void RegisterConfigurationSettings()
@@ -62,10 +67,10 @@ namespace ConfigInjector
             return ConstructSettingObject(type, settingValueString);
         }
 
-        internal static IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
+        private IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
         {
             var settingType = type.GetProperty("Value").PropertyType;
-            var settingValue = (dynamic)SettingValueConverter.ParseSettingValue(settingType, settingValueString);
+            var settingValue = (dynamic) _settingValueConverter.ParseSettingValue(settingType, settingValueString);
 
             var setting = (IConfigurationSetting) Activator.CreateInstance(type);
             ((dynamic) setting).Value = settingValue;

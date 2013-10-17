@@ -8,11 +8,14 @@ namespace ConfigInjector
 {
     internal class SettingValueConverter
     {
-        private static readonly IValueParser[] _valueParsers;
+        private readonly IValueParser[] _valueParsers;
 
-        static SettingValueConverter()
+        public SettingValueConverter(params IValueParser[] customValueParsers)
         {
-            _valueParsers = LoadValueParsers().ToArray();
+            _valueParsers = LoadValueParsers()
+                .Union(customValueParsers)
+                .OrderBy(vp => vp.SortOrder)
+                .ToArray();
         }
 
         private static IEnumerable<IValueParser> LoadValueParsers()
@@ -28,7 +31,7 @@ namespace ConfigInjector
             return parsers;
         }
 
-        public static object ParseSettingValue(Type settingValueType, string settingValueString)
+        public object ParseSettingValue(Type settingValueType, string settingValueString)
         {
             var parser = _valueParsers.First(p => p.CanParse(settingValueType));
             var settingValue = parser.Parse(settingValueType, settingValueString);

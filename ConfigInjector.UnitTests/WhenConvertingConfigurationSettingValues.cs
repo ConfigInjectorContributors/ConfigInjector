@@ -14,7 +14,7 @@ namespace ConfigInjector.UnitTests
         public void TheCorrectValuesAndTypesShouldBeReturned(string stringValue, object expectedValue)
         {
             var settingValueType = expectedValue.GetType();
-            var settingValue = SettingValueConverter.ParseSettingValue(settingValueType, stringValue);
+            var settingValue = new SettingValueConverter().ParseSettingValue(settingValueType, stringValue);
             settingValue.ShouldBe(expectedValue);
         }
 
@@ -29,6 +29,7 @@ namespace ConfigInjector.UnitTests
                 yield return new TestCaseData("1.234", 1.234M);
                 yield return new TestCaseData("1.234", 1.234f);
                 yield return new TestCaseData("01:00:00", TimeSpan.FromHours(1));
+                yield return new TestCaseData("1970-01-01", new DateTime(1970, 01, 01));  // Unix epoch FTW!
                 yield return new TestCaseData("http://www.codingforfunandprofit.com/", new Uri("http://www.codingforfunandprofit.com/"));
                 yield return new TestCaseData("7", new SomeCustomValueTypeThatLooksSuspiciouslyLikeAnInteger(7));
             }
