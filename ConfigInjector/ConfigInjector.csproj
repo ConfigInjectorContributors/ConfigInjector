@@ -47,12 +47,18 @@
     <Compile Include="ConfigurationSettingValidationException.cs" />
     <Compile Include="Configuration\DoYourThingConfigurationConfigurator.cs" />
     <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
+    <Compile Include="ValueParsers\DefaultValueParser.cs" />
+    <Compile Include="ValueParsers\EnumValueParser.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="IConfigurationSetting.cs" />
+    <Compile Include="ValueParsers\IValueParser.cs" />
+    <Compile Include="ValueParsers\ParseMethodParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="SettingsRegistrationService.cs" />
     <Compile Include="SettingValueConverter.cs" />
+    <Compile Include="ValueParsers\TimeSpanParser.cs" />
+    <Compile Include="ValueParsers\UriValueParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ConfigInjector.nuspec">

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
@@ -27,7 +28,8 @@ namespace ConfigInjector.UnitTests
                 yield return new TestCaseData("True", true);
                 yield return new TestCaseData("1.234", 1.234M);
                 yield return new TestCaseData("1.234", 1.234f);
-                //yield return new TestCaseData("01:00:00", TimeSpan.FromHours(1));
+                yield return new TestCaseData("01:00:00", TimeSpan.FromHours(1));
+                yield return new TestCaseData("http://www.codingforfunandprofit.com/", new Uri("http://www.codingforfunandprofit.com/"));
             }
 
             IEnumerator IEnumerable.GetEnumerator()
