@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("ConfigInjector")]
@@ -13,3 +14,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("1e89f6f6-f870-4d44-9632-03027a8c3e94")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: InternalsVisibleTo("ConfigInjector.UnitTests")]

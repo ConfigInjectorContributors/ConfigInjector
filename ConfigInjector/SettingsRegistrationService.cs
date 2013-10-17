@@ -52,22 +52,25 @@ namespace ConfigInjector
             return configurationSettings;
         }
 
-        private static IConfigurationSetting GetConfigSettingFor(Type type)
+        private IConfigurationSetting GetConfigSettingFor(Type type)
         {
             var settingKey = type.Name;
-            var settingValueString = ConfigurationManager.AppSettings[settingKey];
+            var settingValueString = AppSettingsReader.ReadValue(settingKey);
 
             if (settingValueString == null) throw new InvalidOperationException("Setting {0} was not found in [web|app].config".FormatWith(settingKey));
 
-            var settingType = type.GetProperty("Value").PropertyType;
-            var settingValue = (settingType.BaseType == typeof(Enum))
-                ? Enum.Parse(settingType, settingValueString)
-                : (dynamic)Convert.ChangeType(settingValueString, settingType);
+            return ConstructSettingObject(type, settingValueString);
+        }
 
-            var setting = Activator.CreateInstance(type);
+        internal static IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
+        {
+            var settingType = type.GetProperty("Value").PropertyType;
+            var settingValue = SettingValueConverter.ParseSettingValue(settingType, settingValueString);
+
+            var setting = (IConfigurationSetting) Activator.CreateInstance(type);
             ((dynamic) setting).Value = settingValue;
 
-            return (IConfigurationSetting) setting;
+            return setting;
         }
 
         private void AssertThatNoAdditionalSettingsExist()
