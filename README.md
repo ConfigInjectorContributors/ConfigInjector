@@ -131,7 +131,34 @@ You can pick your favourite container from the list below or roll your own.
     * Just remember that they're case-sensitive - and they *should* be case-sensitive, because SomeEnum.Foo and SomeEnum.FOO are different.
 * Uris
 * Any type that Convert.ChangeType can convert from a string.
+* Any types for which you provide a custom parser.
 
 ## Can I provide my own type converters?
 
-Not yet. The internal infrastructure is there but I haven't written a configuration hook yet. If you need it before I build it, send me a pull request for a configuration hook and then just implement the IValueParser interface.
+Yep. Just provide your custom value parsers to the WithCustomValueParsers configuration method.
+
+    ConfigurationConfigurator.RegisterConfigurationSettings()
+                             .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
+                             .RegisterWithContainer(configSetting => /* TODO: Register this instance with your container here */ )
+                             .WithCustomValueParsers(new PersonNameValueParser())
+                             .DoYourThing();
+
+Each of your parsers should implement the IValueParser interface:
+
+    public class EnumValueParser : IValueParser
+    {
+        public int SortOrder
+        {
+            get { return int.MaxValue - 2; }
+        }
+
+        public bool CanParse(Type settingValueType)
+        {
+            return settingValueType.BaseType == typeof (Enum);
+        }
+
+        public object Parse(Type settingValueType, string settingValueString)
+        {
+            return Enum.Parse(settingValueType, settingValueString);
+        }
+    }
