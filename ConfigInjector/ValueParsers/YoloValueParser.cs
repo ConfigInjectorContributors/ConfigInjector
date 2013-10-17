@@ -2,7 +2,7 @@
 
 namespace ConfigInjector.ValueParsers
 {
-    public class DefaultValueParser : IValueParser
+    public class YoloValueParser : IValueParser
     {
         public int SortOrder
         {

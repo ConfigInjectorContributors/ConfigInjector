@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace ConfigInjector.ValueParsers
 {
-    public class ParseMethodParser : IValueParser
+    public class AnyOldParseMethodValueParser : IValueParser
     {
         public int SortOrder
         {
