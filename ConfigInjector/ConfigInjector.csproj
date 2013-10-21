@@ -40,13 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettingsReader.cs" />
+    <Compile Include="SettingsReaders\AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="ConfigurationSetting.cs" />
     <Compile Include="ConfigurationSettingValidationException.cs" />
     <Compile Include="Configuration\DoYourThingConfigurationConfigurator.cs" />
     <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
+    <Compile Include="SettingsReaders\AppSettingsWithSufixConventionReader.cs" />
+    <Compile Include="SettingsReaders\ISettingsReader.cs" />
     <Compile Include="ValueParsers\YoloValueParser.cs" />
     <Compile Include="ValueParsers\EnumValueParser.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
