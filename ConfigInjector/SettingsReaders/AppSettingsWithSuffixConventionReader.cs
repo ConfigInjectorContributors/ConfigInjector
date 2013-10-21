@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace ConfigInjector.SettingsReaders
 {
-    public class AppSettingsWithSufixConventionReader : ISettingsReader
+    public class AppSettingsWithSuffixConventionReader : ISettingsReader
     {
         public string ReadValue(string key)
         {

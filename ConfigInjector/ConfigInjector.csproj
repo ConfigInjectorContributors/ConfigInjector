@@ -47,7 +47,7 @@
     <Compile Include="ConfigurationSettingValidationException.cs" />
     <Compile Include="Configuration\DoYourThingConfigurationConfigurator.cs" />
     <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
-    <Compile Include="SettingsReaders\AppSettingsWithSufixConventionReader.cs" />
+    <Compile Include="SettingsReaders\AppSettingsWithSuffixConventionReader.cs" />
     <Compile Include="SettingsReaders\ISettingsReader.cs" />
     <Compile Include="ValueParsers\YoloValueParser.cs" />
     <Compile Include="ValueParsers\EnumValueParser.cs" />

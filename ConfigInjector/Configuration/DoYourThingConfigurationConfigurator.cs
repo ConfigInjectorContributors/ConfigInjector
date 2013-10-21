@@ -16,7 +16,7 @@ namespace ConfigInjector.Configuration
         private readonly List<ISettingsReader> _settingsReaders = new List<ISettingsReader>
         {
             new AppSettingsReader(),
-            new AppSettingsWithSufixConventionReader()
+            new AppSettingsWithSuffixConventionReader()
         };
         
         internal DoYourThingConfigurationConfigurator(Assembly[] assemblies, Action<IConfigurationSetting> registerAsSingleton)
