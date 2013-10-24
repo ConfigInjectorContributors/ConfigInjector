@@ -17,7 +17,7 @@ namespace ConfigInjector.UnitTests
 
             return new SettingsRegistrationService(assemblies,
                                                    setting => { },
-                                                   true,
+                                                   false,
                                                    new SettingValueConverter(),
                                                    settingsReader,
                                                    SettingKeyConventions.BuiltInConventions.ToArray());
@@ -28,26 +28,30 @@ namespace ConfigInjector.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof (ConfigurationException))]
-        public void AConfigurationExceptionShouldBeThrown()
+        [ExpectedException(typeof (ExtraneousSettingsException))]
+        public void AnExtraneousSettingsExceptionShouldBeThrown()
         {
             Subject.RegisterConfigurationSettings();
         }
 
         private class ExtraneousSettingsReader : ISettingsReader
         {
+            private readonly Dictionary<string, string> _settings = new[]
+            {
+                new KeyValuePair<string, string>(typeof (SomeAmbiguousThingSetting).Name, "DoesNotMatter"),
+                new KeyValuePair<string, string>("SomeSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter"),
+                new KeyValuePair<string, string>("SomeOtherSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter"),
+            }.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
             public string ReadValue(string key)
             {
-                return null;
+                string value;
+                return _settings.TryGetValue(key, out value) ? value : null;
             }
 
             public IEnumerable<string> AllKeys
             {
-                get
-                {
-                    yield return "SomeSettingThatDoesNotHaveACorrespondingType";
-                    yield return "SomeOtherSettingThatDoesNotHaveACorrespondingType";
-                }
+                get { return _settings.Keys; }
             }
         }
     }

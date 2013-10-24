@@ -48,6 +48,7 @@
     <Compile Include="Exceptions\ConfigurationSettingValidationException.cs" />
     <Compile Include="Configuration\DoYourThingConfigurationConfigurator.cs" />
     <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
+    <Compile Include="Exceptions\ExtraneousSettingsException.cs" />
     <Compile Include="Exceptions\MissingSettingException.cs" />
     <Compile Include="SettingsConventions\DefaultSettingKeyConvention.cs" />
     <Compile Include="SettingsConventions\ISettingKeyConvention.cs" />

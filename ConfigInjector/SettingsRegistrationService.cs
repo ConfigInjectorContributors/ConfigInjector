@@ -99,9 +99,7 @@ namespace ConfigInjector
 
             if (extraneousWebConfigEntries.None()) return;
 
-            var messages = extraneousWebConfigEntries.Select(k => "Setting {0} appears in [web|app].config but has no corresponding ConfigurationSetting type.".FormatWith(k));
-            var message = string.Join(Environment.NewLine, messages);
-            throw new ConfigurationException(message);
+            throw new ExtraneousSettingsException(extraneousWebConfigEntries);
         }
 
         private IEnumerable<string> GetPossibleKeysFor(Type type)
