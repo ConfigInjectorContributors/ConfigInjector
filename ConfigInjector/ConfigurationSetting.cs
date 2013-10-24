@@ -47,7 +47,7 @@ namespace ConfigInjector
 
         public override string ToString()
         {
-            return _value as string ?? base.ToString();
+            return "" + Value;
         }
     }
 }
