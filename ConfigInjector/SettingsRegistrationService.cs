@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using ConfigInjector.Extensions;
+using ConfigInjector.SettingsReaders;
 
 namespace ConfigInjector
 {
@@ -15,18 +17,21 @@ namespace ConfigInjector
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
         private readonly SettingValueConverter _settingValueConverter;
+        private readonly List<ISettingsReader> _settingsReaders;
 
         private IConfigurationSetting[] _stronglyTypedSettings;
 
         public SettingsRegistrationService(Assembly[] assemblies,
                                            Action<IConfigurationSetting> registerAsSingleton,
                                            bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
-                                           SettingValueConverter settingValueConverter)
+                                           SettingValueConverter settingValueConverter,
+                                           List<ISettingsReader> settingsReaders)
         {
             _assemblies = assemblies;
             _registerAsSingleton = registerAsSingleton;
             _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
             _settingValueConverter = settingValueConverter;
+            _settingsReaders = settingsReaders;
         }
 
         public void RegisterConfigurationSettings()
@@ -60,9 +65,9 @@ namespace ConfigInjector
         private IConfigurationSetting GetConfigSettingFor(Type type)
         {
             var settingKey = type.Name;
-            var settingValueString = AppSettingsReader.ReadValue(settingKey);
+            var settingValueString = _settingsReaders.Select(r => r.ReadValue(settingKey)).FirstOrDefault(v => v != null);
 
-            if (settingValueString == null) throw new InvalidOperationException("Setting {0} was not found in [web|app].config".FormatWith(settingKey));
+            if (settingValueString == null) throw new InvalidOperationException("Setting {0} was not found".FormatWith(settingKey));
 
             return ConstructSettingObject(type, settingValueString);
         }
