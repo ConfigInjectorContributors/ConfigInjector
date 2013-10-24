@@ -24,6 +24,7 @@ namespace Sample.IntegrationTests
                                      .RegisterWithContainer(configurationSettings.Add)
                                      .AllowEntriesInWebConfigThatDoNotHaveSettingsClasses(false)
                                      .WithCustomValueParsers(new PersonNameValueParser())
+                                     .ExcludeSettingKeys("IgnoredSetting")
                                      .DoYourThing();
 
             _somePersonSetting = configurationSettings.OfType<SomePersonSetting>().Single();

@@ -14,9 +14,10 @@ namespace ConfigInjector.Configuration
 
         private bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
-        private readonly ISettingsReader _settingsReader = new AppSettingsReader();
+        private ISettingsReader _settingsReader ;
 
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
+        private readonly List<string> _excludedKeys = new List<string>();
 
         internal DoYourThingConfigurationConfigurator(Assembly[] assemblies, Action<IConfigurationSetting> registerAsSingleton)
         {
@@ -44,10 +45,18 @@ namespace ConfigInjector.Configuration
             return this;
         }
 
+        public DoYourThingConfigurationConfigurator ExcludeSettingKeys(params string[] settingKeys)
+        {
+            _excludedKeys.AddRange(settingKeys);
+            return this;
+        }
+
         public void DoYourThing()
         {
             if (_assemblies == null) throw new ConfigurationException("You must specify the assemblies to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
+
+            if (_settingsReader == null) _settingsReader = new AppSettingsReader(_excludedKeys.ToArray());
 
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 
