@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
+using ConfigInjector.Exceptions;
 using ConfigInjector.Extensions;
-using ConfigInjector.SettingsReaders;
+using ConfigInjector.SettingsConventions;
 
 namespace ConfigInjector
 {
@@ -17,7 +17,8 @@ namespace ConfigInjector
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
         private readonly SettingValueConverter _settingValueConverter;
-        private readonly List<ISettingsReader> _settingsReaders;
+        private readonly ISettingsReader _settingsReader;
+        private readonly ISettingKeyConvention[] _settingKeyConventions;
 
         private IConfigurationSetting[] _stronglyTypedSettings;
 
@@ -25,13 +26,15 @@ namespace ConfigInjector
                                            Action<IConfigurationSetting> registerAsSingleton,
                                            bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
                                            SettingValueConverter settingValueConverter,
-                                           List<ISettingsReader> settingsReaders)
+                                           ISettingsReader settingsReader,
+                                           ISettingKeyConvention[] settingKeyConventions)
         {
             _assemblies = assemblies;
             _registerAsSingleton = registerAsSingleton;
             _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
             _settingValueConverter = settingValueConverter;
-            _settingsReaders = settingsReaders;
+            _settingsReader = settingsReader;
+            _settingKeyConventions = settingKeyConventions;
         }
 
         public void RegisterConfigurationSettings()
@@ -62,13 +65,18 @@ namespace ConfigInjector
             return configurationSettings;
         }
 
-        private IConfigurationSetting GetConfigSettingFor(Type type)
+        internal IConfigurationSetting GetConfigSettingFor(Type type)
         {
-            var settingKey = type.Name;
-            var settingValueString = _settingsReaders.Select(r => r.ReadValue(settingKey)).FirstOrDefault(v => v != null);
+            var settingValueStrings = GetPossibleKeysFor(type)
+                .Select(k => _settingsReader.ReadValue(k))
+                .NotNull()
+                .ToArray();
 
-            if (settingValueString == null) throw new InvalidOperationException("Setting {0} was not found".FormatWith(settingKey));
+            var matchingSettingCount = settingValueStrings.Count();
+            if (matchingSettingCount == 0) throw new MissingSettingException(type);
+            if (matchingSettingCount > 1) throw new AmbiguousSettingException(type, settingValueStrings);
 
+            var settingValueString = settingValueStrings.Single();
             return ConstructSettingObject(type, settingValueString);
         }
 
@@ -85,9 +93,9 @@ namespace ConfigInjector
 
         private void AssertThatNoAdditionalSettingsExist()
         {
-            var extraneousWebConfigEntries = ConfigurationManager.AppSettings.AllKeys
-                                                                 .Where(NoStronglyTypedSettingExistsFor)
-                                                                 .ToArray();
+            var extraneousWebConfigEntries = _settingsReader.AllKeys
+                                                            .Where(s => !StronglyTypedSettingExistsFor(s))
+                                                            .ToArray();
 
             if (extraneousWebConfigEntries.None()) return;
 
@@ -96,11 +104,21 @@ namespace ConfigInjector
             throw new ConfigurationException(message);
         }
 
-        private bool NoStronglyTypedSettingExistsFor(string key)
+        private IEnumerable<string> GetPossibleKeysFor(Type type)
         {
-            return _stronglyTypedSettings
-                .Where(s => s.GetType().Name == key)
-                .None();
+            return _settingKeyConventions
+                .Select(sc => sc.KeyFor(type))
+                .NotNull()
+                .Distinct();
+        }
+
+        private bool StronglyTypedSettingExistsFor(string key)
+        {
+            var possibleKeysForType = _stronglyTypedSettings.SelectMany(t => GetPossibleKeysFor(t.GetType()))
+                                                        .ToArray();
+            return possibleKeysForType
+                .Where(k => k == key)
+                .Any();
         }
     }
 }

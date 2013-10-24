@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ConfigInjector
+namespace ConfigInjector.Exceptions
 {
     [Serializable]
     public class ConfigurationException : Exception

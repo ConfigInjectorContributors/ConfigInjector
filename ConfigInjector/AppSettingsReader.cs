@@ -1,13 +1,18 @@
-﻿using System.ComponentModel.Design;
+﻿using System.Collections.Generic;
 using System.Configuration;
 
-namespace ConfigInjector.SettingsReaders
+namespace ConfigInjector
 {
     public class AppSettingsReader : ISettingsReader
     {
         public string ReadValue(string key)
         {
             return ConfigurationManager.AppSettings[key];
+        }
+
+        public IEnumerable<string> AllKeys
+        {
+            get { return ConfigurationManager.AppSettings.AllKeys; }
         }
     }
 }

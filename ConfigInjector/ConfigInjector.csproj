@@ -40,15 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SettingsReaders\AppSettingsReader.cs" />
+    <Compile Include="AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
-    <Compile Include="ConfigurationException.cs" />
+    <Compile Include="Exceptions\AmbiguousSettingException.cs" />
+    <Compile Include="Exceptions\ConfigurationException.cs" />
     <Compile Include="ConfigurationSetting.cs" />
-    <Compile Include="ConfigurationSettingValidationException.cs" />
+    <Compile Include="Exceptions\ConfigurationSettingValidationException.cs" />
     <Compile Include="Configuration\DoYourThingConfigurationConfigurator.cs" />
     <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
-    <Compile Include="SettingsReaders\AppSettingsWithSuffixConventionReader.cs" />
-    <Compile Include="SettingsReaders\ISettingsReader.cs" />
+    <Compile Include="Exceptions\MissingSettingException.cs" />
+    <Compile Include="SettingsConventions\DefaultSettingKeyConvention.cs" />
+    <Compile Include="SettingsConventions\ISettingKeyConvention.cs" />
+    <Compile Include="ISettingsReader.cs" />
+    <Compile Include="SettingsConventions\SettingKeyConventions.cs" />
+    <Compile Include="SettingsConventions\WithSuffixSettingKeyConvention.cs" />
     <Compile Include="ValueParsers\YoloValueParser.cs" />
     <Compile Include="ValueParsers\EnumValueParser.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />

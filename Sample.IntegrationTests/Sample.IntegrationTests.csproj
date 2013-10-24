@@ -48,7 +48,7 @@
     <Compile Include="ConfigurationSettings\PersonName.cs" />
     <Compile Include="ConfigurationSettings\PersonNameValueParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConfigurationSettings\SomePersonConfigurationSetting.cs" />
+    <Compile Include="ConfigurationSettings\SomePersonSetting.cs" />
     <Compile Include="WhenConstructingSomePerson.cs" />
   </ItemGroup>
   <ItemGroup>

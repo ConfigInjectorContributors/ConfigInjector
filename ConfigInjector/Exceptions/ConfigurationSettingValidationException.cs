@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace ConfigInjector
+namespace ConfigInjector.Exceptions
 {
     [Serializable]
-    public class ConfigurationSettingValidationException : Exception
+    public class ConfigurationSettingValidationException : ConfigurationException
     {
         private readonly IEnumerable<string> _validationErrors;
 

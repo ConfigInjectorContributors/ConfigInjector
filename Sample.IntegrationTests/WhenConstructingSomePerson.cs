@@ -12,7 +12,7 @@ namespace Sample.IntegrationTests
     [TestFixture]
     public class WhenConstructingSomePerson
     {
-        private SomePersonConfigurationSetting _somePersonConfigurationSetting;
+        private SomePersonSetting _somePersonSetting;
 
         [SetUp]
         public void SetUp()
@@ -26,25 +26,25 @@ namespace Sample.IntegrationTests
                                      .WithCustomValueParsers(new PersonNameValueParser())
                                      .DoYourThing();
 
-            _somePersonConfigurationSetting = configurationSettings.OfType<SomePersonConfigurationSetting>().Single();
+            _somePersonSetting = configurationSettings.OfType<SomePersonSetting>().Single();
         }
 
         [Test]
         public void ThePersonsFirstNameShouldBeRandom()
         {
-            _somePersonConfigurationSetting.Value.FirstName.ShouldBe("Random");
+            _somePersonSetting.Value.FirstName.ShouldBe("Random");
         }
 
         [Test]
         public void ThePersonsMiddleNameShouldBeFrequentFlyer()
         {
-            _somePersonConfigurationSetting.Value.MiddleNames.ShouldBe("Frequent Flyer");
+            _somePersonSetting.Value.MiddleNames.ShouldBe("Frequent Flyer");
         }
 
         [Test]
         public void ThePersonsLastNameShouldBeDent()
         {
-            _somePersonConfigurationSetting.Value.LastName.ShouldBe("Dent");
+            _somePersonSetting.Value.LastName.ShouldBe("Dent");
         }
     }
 }

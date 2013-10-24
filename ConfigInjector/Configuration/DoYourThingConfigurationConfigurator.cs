@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using ConfigInjector.SettingsReaders;
+using ConfigInjector.Exceptions;
+using ConfigInjector.SettingsConventions;
 using ConfigInjector.ValueParsers;
 
 namespace ConfigInjector.Configuration
@@ -10,19 +11,19 @@ namespace ConfigInjector.Configuration
     {
         private readonly Assembly[] _assemblies;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
+
         private bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
+        private readonly ISettingsReader _settingsReader = new AppSettingsReader();
 
-        private readonly List<ISettingsReader> _settingsReaders = new List<ISettingsReader>
-        {
-            new AppSettingsReader(),
-            new AppSettingsWithSuffixConventionReader()
-        };
-        
+        private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
+
         internal DoYourThingConfigurationConfigurator(Assembly[] assemblies, Action<IConfigurationSetting> registerAsSingleton)
         {
             _assemblies = assemblies;
             _registerAsSingleton = registerAsSingleton;
+
+            _settingKeyConventions.AddRange(SettingKeyConventions.BuiltInConventions);
         }
 
         public DoYourThingConfigurationConfigurator AllowEntriesInWebConfigThatDoNotHaveSettingsClasses(bool allow)
@@ -37,9 +38,9 @@ namespace ConfigInjector.Configuration
             return this;
         }
 
-        public DoYourThingConfigurationConfigurator WithSettingsReaders(params ISettingsReader[] settingReaders)
+        public DoYourThingConfigurationConfigurator WithSettingKeyConventions(params ISettingKeyConvention[] settingKeyConventions)
         {
-            _settingsReaders.AddRange(settingReaders);
+            _settingKeyConventions.AddRange(settingKeyConventions);
             return this;
         }
 
@@ -54,7 +55,8 @@ namespace ConfigInjector.Configuration
                                                                                  _registerAsSingleton,
                                                                                  _allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
                                                                                  settingValueConverter,
-                                                                                 _settingsReaders);
+                                                                                 _settingsReader,
+                                                                                 _settingKeyConventions.ToArray());
             appConfigConfigurationProvider.RegisterConfigurationSettings();
         }
     }

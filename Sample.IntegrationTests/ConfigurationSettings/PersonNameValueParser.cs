@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ConfigInjector;
+using ConfigInjector.Exceptions;
 using ConfigInjector.ValueParsers;
 
 namespace Sample.IntegrationTests.ConfigurationSettings

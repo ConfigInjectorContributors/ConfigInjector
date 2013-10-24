@@ -2,7 +2,7 @@
 
 namespace Sample.IntegrationTests.ConfigurationSettings
 {
-    public class SomePersonConfigurationSetting : ConfigurationSetting<PersonName>
+    public class SomePersonSetting : ConfigurationSetting<PersonName>
     {
     }
 }
