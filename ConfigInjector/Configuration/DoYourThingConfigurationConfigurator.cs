@@ -14,7 +14,7 @@ namespace ConfigInjector.Configuration
 
         private bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
-        private ISettingsReader _settingsReader ;
+        private ISettingsReader _settingsReader;
 
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
         private readonly List<string> _excludedKeys = new List<string>();
@@ -27,6 +27,10 @@ namespace ConfigInjector.Configuration
             _settingKeyConventions.AddRange(SettingKeyConventions.BuiltInConventions);
         }
 
+        /// <summary>
+        /// If set to false (default), ConfigInjector will blow up when there are settings in the [web|app].config file that
+        /// do not have corresponding setting types in your application.
+        /// </summary>
         public DoYourThingConfigurationConfigurator AllowEntriesInWebConfigThatDoNotHaveSettingsClasses(bool allow)
         {
             _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allow;
@@ -51,20 +55,30 @@ namespace ConfigInjector.Configuration
             return this;
         }
 
+        /// <summary>
+        /// This allows you to substitute your own application settings reader. A good use case for this is in having a unit/convention
+        /// test suite that opens your application's app.config file (rather than the test project's one) and asserts that all configuration
+        /// settings are present and accounted for.
+        /// </summary>
+        public DoYourThingConfigurationConfigurator WithAppSettingsReader(ISettingsReader settingsReader)
+        {
+            _settingsReader = settingsReader;
+            return this;
+        }
+
         public void DoYourThing()
         {
             if (_assemblies == null) throw new ConfigurationException("You must specify the assemblies to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
 
-            if (_settingsReader == null) _settingsReader = new AppSettingsReader(_excludedKeys.ToArray());
-
+            var settingsReader = _settingsReader ?? new AppSettingsReader(_excludedKeys.ToArray());
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 
             var appConfigConfigurationProvider = new SettingsRegistrationService(_assemblies,
                                                                                  _registerAsSingleton,
                                                                                  _allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
                                                                                  settingValueConverter,
-                                                                                 _settingsReader,
+                                                                                 settingsReader,
                                                                                  _settingKeyConventions.ToArray());
             appConfigConfigurationProvider.RegisterConfigurationSettings();
         }
