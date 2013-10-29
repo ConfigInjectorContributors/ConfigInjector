@@ -72,6 +72,11 @@ namespace ConfigInjector.UnitTests
                 if (myType == null) return false;
                 return _value == myType.Value;
             }
+
+            public override int GetHashCode()
+            {
+                return _value.GetHashCode();
+            }
         }
     }
 }
