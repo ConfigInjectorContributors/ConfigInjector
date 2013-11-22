@@ -12,7 +12,7 @@ namespace ConfigInjector.Configuration
         private readonly Assembly[] _assemblies;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
 
-        private bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+        private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
         private ISettingsReader _settingsReader;
 
@@ -31,9 +31,9 @@ namespace ConfigInjector.Configuration
         /// If set to false (default), ConfigInjector will blow up when there are settings in the [web|app].config file that
         /// do not have corresponding setting types in your application.
         /// </summary>
-        public DoYourThingConfigurationConfigurator AllowEntriesInWebConfigThatDoNotHaveSettingsClasses(bool allow)
+        public DoYourThingConfigurationConfigurator AllowConfigurationEntriesThatDoNotHaveSettingsClasses(bool allow)
         {
-            _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allow;
+            _allowConfigurationEntriesThatDoNotHaveSettingsClasses = allow;
             return this;
         }
 
@@ -76,7 +76,7 @@ namespace ConfigInjector.Configuration
 
             var appConfigConfigurationProvider = new SettingsRegistrationService(_assemblies,
                                                                                  _registerAsSingleton,
-                                                                                 _allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
+                                                                                 _allowConfigurationEntriesThatDoNotHaveSettingsClasses,
                                                                                  settingValueConverter,
                                                                                  settingsReader,
                                                                                  _settingKeyConventions.ToArray());

@@ -22,7 +22,7 @@ namespace Sample.IntegrationTests
             ConfigurationConfigurator.RegisterConfigurationSettings()
                                      .FromAssemblies(Assembly.GetExecutingAssembly())
                                      .RegisterWithContainer(configurationSettings.Add)
-                                     .AllowEntriesInWebConfigThatDoNotHaveSettingsClasses(false)
+                                     .AllowConfigurationEntriesThatDoNotHaveSettingsClasses(false)
                                      .WithCustomValueParsers(new PersonNameValueParser())
                                      .ExcludeSettingKeys("IgnoredSetting")
                                      .DoYourThing();
