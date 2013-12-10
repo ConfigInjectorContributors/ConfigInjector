@@ -162,3 +162,13 @@ Each of your parsers should implement the IValueParser interface:
             return Enum.Parse(settingValueType, settingValueString);
         }
     }
+
+## How can I exclude certain settings that are causing an ExtraneousSettingsException?
+
+Some external packages add configuration that your application doesn't care about, such as Microsoft.AspNet.Mvc.  These will cause an ExtraneousSettingsException initially since you have not created classes for them.  If you do not want to create classes for them since you will not be using them, while running up the Configurator, just call "ExcludeSettingKeys" passing in the string array of keys to ignore.  E.g:
+
+    ConfigurationConfigurator.RegisterConfigurationSettings()
+                             .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
+                             .RegisterWithContainer(configSetting => /* TODO: Register this instance with your container here */ )
+                             .ExcludeSettingKeys(new[] { "ExampleSettingKey1", "webpages:Version", "webpages:Enabled" })
+                             .DoYourThing();
