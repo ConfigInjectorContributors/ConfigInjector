@@ -165,10 +165,22 @@ Each of your parsers should implement the IValueParser interface:
 
 ## How can I exclude certain settings that are causing an ExtraneousSettingsException?
 
-Some external packages add configuration that your application doesn't care about, such as Microsoft.AspNet.Mvc.  These will cause an ExtraneousSettingsException initially since you have not created classes for them.  If you do not want to create classes for them since you will not be using them, while running up the Configurator, just call "ExcludeSettingKeys" passing in the string array of keys to ignore.  E.g:
+Some external packages add configuration that your application doesn't care about, such as Microsoft.AspNet.Mvc. These will cause an ExtraneousSettingsException because you have not created classes for them. **This is desired behaviour**. We want to discourage any sneaky references to ConfigurationManager.AppSettings[...] and an easy way to do that is to simply not permit any settings that we haven't wrapped in setting classes.
+
+If you do not want to create classes for them since you will not be using them, while running up the Configurator, just call "ExcludeSettingKeys" passing in the string array of keys to ignore. E.g:
 
     ConfigurationConfigurator.RegisterConfigurationSettings()
                              .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
                              .RegisterWithContainer(configSetting => /* TODO: Register this instance with your container here */ )
                              .ExcludeSettingKeys(new[] { "ExampleSettingKey1", "webpages:Version", "webpages:Enabled" })
                              .DoYourThing();
+
+IF you genuinely don't want to assert that nobody is using silly/dangerous inline configuration settings, you can use the following:
+
+    ConfigurationConfigurator.RegisterConfigurationSettings()
+                             .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
+                             .RegisterWithContainer(configSetting => /* TODO: Register this instance with your container here */ )
+                             .AllowConfigurationEntriesThatDoNotHaveSettingsClasses(true)
+                             .DoYourThing();
+                             
+This approach is also useful for environments like Windows Azure, where 1) enumerating all configuration settings is not supported and 2) the hosting environment may randomly add unexpected settings to your application's configuration.
