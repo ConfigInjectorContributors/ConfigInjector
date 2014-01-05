@@ -1,5 +1,5 @@
 ﻿using System;
-using ConfigInjector.Extensions;
+using ThirdDrawer.Extensions;
 
 namespace ConfigInjector.Exceptions
 {

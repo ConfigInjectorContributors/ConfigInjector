@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ConfigInjector.Exceptions;
-using ConfigInjector.Extensions;
 using ConfigInjector.SettingsConventions;
+using ThirdDrawer.Extensions;
 
 namespace ConfigInjector
 {

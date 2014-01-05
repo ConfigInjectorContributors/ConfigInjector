@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConfigInjector.Extensions;
+using ThirdDrawer.Extensions;
 
 namespace ConfigInjector.Exceptions
 {
