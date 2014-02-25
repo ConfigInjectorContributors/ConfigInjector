@@ -5,6 +5,7 @@ using System.Reflection;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
 using ThirdDrawer.Extensions;
+using ThirdDrawer.Extensions.CollectionExtensionMethods;
 
 namespace ConfigInjector
 {
