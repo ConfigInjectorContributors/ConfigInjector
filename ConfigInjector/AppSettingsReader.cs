@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ConfigInjector
@@ -34,6 +35,8 @@ namespace ConfigInjector
 
         private Dictionary<string, string> ReadSettingsFromConfigFile()
         {
+            Trace.WriteLine("Reading settings from {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).FilePath);
+
             return ConfigurationManager.AppSettings.AllKeys
                                        .Where(k => !_excludedKeys.Contains(k))
                                        .Select(k => new KeyValuePair<string, string>(k, ConfigurationManager.AppSettings[k]))
