@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
+    <Compile Include="QuickAndDirty\DefaultSettingsReader.cs" />
     <Compile Include="Exceptions\AmbiguousSettingException.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
     <Compile Include="ConfigurationSetting.cs" />
@@ -56,6 +57,8 @@
     <Compile Include="Configuration\RegisterWithContainerConfigurationConfigurator.cs" />
     <Compile Include="Exceptions\ExtraneousSettingsException.cs" />
     <Compile Include="Exceptions\MissingSettingException.cs" />
+    <Compile Include="QuickAndDirty\DefaultStaticSettingReaderStrategy.cs" />
+    <Compile Include="QuickAndDirty\IStaticSettingReaderStrategy.cs" />
     <Compile Include="SettingsConventions\DefaultSettingKeyConvention.cs" />
     <Compile Include="SettingsConventions\ISettingKeyConvention.cs" />
     <Compile Include="ISettingsReader.cs" />
