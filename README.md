@@ -184,3 +184,24 @@ IF you genuinely don't want to assert that nobody is using silly/dangerous inlin
                              .DoYourThing();
                              
 This approach is also useful for environments like Windows Azure, where 1) enumerating all configuration settings is not supported and 2) the hosting environment may randomly add unexpected settings to your application's configuration.
+
+## Can I load settings directly without configuring my container first?
+
+You can do this but I'd give some serious thought to whether it's a good idea in your particular case.
+
+    var setting = DefaultSettingsReader.Get<SimpleIntSetting>();
+
+If you genuinely need access to settings before your container is wired up, go ahead. If you're using ConfigInjector as a settings service locator across your entire app, you're holding it wrong :)
+
+ConfigInjector will make an intelligent guess at defaults. It will, for instance, walk the call stack that invoked it and look for assemblies that contain settings and value parsers. If you have custom value parsers it will pick those up, too, provided that they're not off in a satellite assembly somewhere.
+
+If you need to globally change the default behaviour, create a class that implements IStaticSettingReaderStrategy:
+
+    public class MyCustomSettingsReaderStrategy : IStaticSettingReaderStrategy
+    {
+        // ...
+    }
+
+and use use this to wire it up:
+
+    DefaultSettingsReader.SetStrategy(new MyCustomSettingsReaderStrategy());
