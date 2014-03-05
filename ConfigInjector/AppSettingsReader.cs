@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
+using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace ConfigInjector
 {
@@ -35,7 +36,7 @@ namespace ConfigInjector
 
         private Dictionary<string, string> ReadSettingsFromConfigFile()
         {
-            Trace.WriteLine("Reading settings from {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).FilePath);
+            Trace.WriteLine("Reading settings from {0}".FormatWith(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).FilePath));
 
             return ConfigurationManager.AppSettings.AllKeys
                                        .Where(k => !_excludedKeys.Contains(k))
