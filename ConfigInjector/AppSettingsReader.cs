@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Linq;
-using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace ConfigInjector
 {
@@ -36,12 +34,12 @@ namespace ConfigInjector
 
         private Dictionary<string, string> ReadSettingsFromConfigFile()
         {
-            Trace.WriteLine("Reading settings from {0}".FormatWith(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).FilePath));
+            var appSettings = ConfigurationManager.AppSettings;
 
-            return ConfigurationManager.AppSettings.AllKeys
-                                       .Where(k => !_excludedKeys.Contains(k))
-                                       .Select(k => new KeyValuePair<string, string>(k, ConfigurationManager.AppSettings[k]))
-                                       .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return appSettings.AllKeys
+                              .Where(k => !_excludedKeys.Contains(k))
+                              .Select(k => new KeyValuePair<string, string>(k, appSettings[k]))
+                              .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
     }
 }
