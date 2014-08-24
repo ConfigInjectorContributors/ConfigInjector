@@ -33,6 +33,15 @@ namespace ConfigInjector
 
         public object ParseSettingValue(Type settingValueType, string settingValueString)
         {
+            var underlyingNonGenericType = Nullable.GetUnderlyingType(settingValueType);
+            var isNullableType = underlyingNonGenericType != null;
+
+            if (isNullableType)
+            {
+                if (string.IsNullOrEmpty(settingValueString)) return null;
+                settingValueType = underlyingNonGenericType;
+            }
+
             var parser = _valueParsers.First(p => p.CanParse(settingValueType));
             var settingValue = parser.Parse(settingValueType, settingValueString);
             return settingValue;
