@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Reflection;
+using ConfigInjector.TypeProviders;
 
 namespace ConfigInjector.Configuration
 {
     public class RegisterWithContainerConfigurationConfigurator
     {
-        private readonly Assembly[] _assemblies;
+        private readonly ITypeProvider _typeProvider;
 
-        internal RegisterWithContainerConfigurationConfigurator(Assembly[] assemblies)
+        internal RegisterWithContainerConfigurationConfigurator(ITypeProvider typeProvider)
         {
-            _assemblies = assemblies;
+            _typeProvider = typeProvider;
         }
 
         public DoYourThingConfigurationConfigurator RegisterWithContainer(Action<IConfigurationSetting> registerAsSingleton)
         {
-            return new DoYourThingConfigurationConfigurator(_assemblies, registerAsSingleton);
+            return new DoYourThingConfigurationConfigurator(_typeProvider, registerAsSingleton);
         }
     }
 }

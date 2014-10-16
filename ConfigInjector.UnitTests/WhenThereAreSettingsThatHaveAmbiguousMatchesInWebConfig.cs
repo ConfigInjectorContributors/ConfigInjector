@@ -2,6 +2,7 @@
 using System.Linq;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
+using ConfigInjector.TypeProviders;
 using NUnit.Framework;
 
 namespace ConfigInjector.UnitTests
@@ -15,7 +16,7 @@ namespace ConfigInjector.UnitTests
 
             var settingsReader = new AmbiguousSettingsReader();
 
-            return new SettingsRegistrationService(assemblies,
+            return new SettingsRegistrationService(new AssemblyScanningTypeProvider(assemblies), 
                                                    setting => { },
                                                    false,
                                                    new SettingValueConverter(),

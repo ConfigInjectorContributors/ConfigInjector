@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
+using ConfigInjector.TypeProviders;
 using ThirdDrawer.Extensions;
 using ThirdDrawer.Extensions.CollectionExtensionMethods;
 
@@ -14,7 +15,7 @@ namespace ConfigInjector
     /// </summary>
     internal class SettingsRegistrationService
     {
-        private readonly Assembly[] _assemblies;
+        private readonly ITypeProvider _typeProvider;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
         private readonly SettingValueConverter _settingValueConverter;
@@ -23,14 +24,14 @@ namespace ConfigInjector
 
         private IConfigurationSetting[] _stronglyTypedSettings;
 
-        public SettingsRegistrationService(Assembly[] assemblies,
+        public SettingsRegistrationService(ITypeProvider typeProvider,
                                            Action<IConfigurationSetting> registerAsSingleton,
                                            bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
                                            SettingValueConverter settingValueConverter,
                                            ISettingsReader settingsReader,
                                            ISettingKeyConvention[] settingKeyConventions)
         {
-            _assemblies = assemblies;
+            _typeProvider = typeProvider;
             _registerAsSingleton = registerAsSingleton;
             _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
             _settingValueConverter = settingValueConverter;
@@ -55,8 +56,7 @@ namespace ConfigInjector
 
         private IConfigurationSetting[] LoadConfigurationSettings()
         {
-            var configurationSettings = _assemblies
-                .SelectMany(a => a.GetExportedTypes())
+            var configurationSettings = _typeProvider.Get()
                 .Where(t => !t.IsInterface)
                 .Where(t => !t.IsAbstract)
                 .Where(t => typeof (IConfigurationSetting).IsAssignableFrom(t))
