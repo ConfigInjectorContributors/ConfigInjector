@@ -122,6 +122,18 @@ You can pick your favourite container from the list below or roll your own.
     return kernel;
 
 # FAQ
+## What naming conventions should I use for the configuration settings?
+
+There are two naming conventions that are applied by default. With the first, `DefaultSettingKeyConvention`, the name of the configuration setting class should match the key used in the `appSettings` section of your configuration file. So given a key called `StorageConnectionString` the corresponding configuration setting class should be called `StorageConnectionString`. The second, `WithSuffixSettingKeyConvention` strips 'Setting' from the name of the configuration class, so given a key called `StorageConnectionString` the corresponding configuration setting class could be called `StorageConnectionStringSetting`.
+
+Additional naming conventions can be configured when registering ConfigInjector by providing your own implementations of `ISettingKeyConvention`, using the `WithSettingKeyConventions()` method before calling `DoYourThing()`:
+
+    ConfigurationConfigurator.RegisterConfigurationSettings()
+                             .FromAssemblies(...)
+                             .RegisterWithContainer(...)
+                             .WithSettingKeyConventions(new MyCustomKeyConvention())
+                             .DoYourThing();
+
 ## What types can I use?
 
 * Any type that has a public static .Parse(string someValue) method.
