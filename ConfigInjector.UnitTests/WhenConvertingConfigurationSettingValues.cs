@@ -11,9 +11,8 @@ namespace ConfigInjector.UnitTests
     {
         [Test]
         [TestCaseSource(typeof (TestCases))]
-        public void TheCorrectValuesAndTypesShouldBeReturned(string stringValue, object expectedValue)
+        public void TheCorrectValuesAndTypesShouldBeReturned(string stringValue, object expectedValue, Type settingValueType)
         {
-            var settingValueType = expectedValue.GetType();
             var settingValue = new SettingValueConverter().ParseSettingValue(settingValueType, stringValue);
             settingValue.ShouldBe(expectedValue);
         }
@@ -22,16 +21,30 @@ namespace ConfigInjector.UnitTests
         {
             public IEnumerator<TestCaseData> GetEnumerator()
             {
-                yield return new TestCaseData("1", 1);
-                yield return new TestCaseData("Bar", SomeSettingEnum.Bar);
-                yield return new TestCaseData("false", false);
-                yield return new TestCaseData("True", true);
-                yield return new TestCaseData("1.234", 1.234M);
-                yield return new TestCaseData("1.234", 1.234f);
-                yield return new TestCaseData("01:00:00", TimeSpan.FromHours(1));
-                yield return new TestCaseData("1970-01-01", new DateTime(1970, 01, 01));  // Unix epoch FTW!
-                yield return new TestCaseData("http://www.codingforfunandprofit.com/", new Uri("http://www.codingforfunandprofit.com/"));
-                yield return new TestCaseData("7", new SomeCustomValueTypeThatLooksSuspiciouslyLikeAnInteger(7));
+                yield return TestCase("1", 1);
+                yield return TestCase("Bar", SomeSettingEnum.Bar);
+                yield return TestCase("false", false);
+                yield return TestCase("True", true);
+                yield return TestCase("1.234", 1.234M);
+                yield return TestCase("1.234", 1.234f);
+                yield return TestCase("01:00:00", TimeSpan.FromHours(1));
+                yield return TestCase("1970-01-01", new DateTime(1970, 01, 01));  // Unix epoch FTW!
+                yield return TestCase("http://www.codingforfunandprofit.com/", new Uri("http://www.codingforfunandprofit.com/"));
+                yield return TestCase("7", new SomeCustomValueTypeThatLooksSuspiciouslyLikeAnInteger(7));
+                yield return TestCase("", null, typeof(int?));
+                yield return TestCase("1", 1, typeof(int?));
+                yield return TestCase("", null, typeof(Guid?));
+                yield return TestCase("00000000-0000-0000-0000-000000000000", Guid.Empty, typeof(Guid?));
+            }
+
+            public TestCaseData TestCase(string stringValue, object expectedValue)
+            {
+                return TestCase(stringValue, expectedValue, expectedValue.GetType());
+            }
+
+            public TestCaseData TestCase(string stringValue, object expectedValue, Type settingValueType)
+            {
+                return new TestCaseData(stringValue, expectedValue, settingValueType);
             }
 
             IEnumerator IEnumerable.GetEnumerator()
