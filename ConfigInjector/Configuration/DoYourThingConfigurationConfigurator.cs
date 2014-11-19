@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Reflection;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
+using ConfigInjector.TypeProviders;
 using ConfigInjector.ValueParsers;
 
 namespace ConfigInjector.Configuration
 {
     public class DoYourThingConfigurationConfigurator
     {
-        private readonly Assembly[] _assemblies;
+        private readonly ITypeProvider _typeProvider;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
 
         private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
@@ -19,9 +20,9 @@ namespace ConfigInjector.Configuration
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
         private readonly List<string> _excludedKeys = new List<string>();
 
-        internal DoYourThingConfigurationConfigurator(Assembly[] assemblies, Action<IConfigurationSetting> registerAsSingleton)
+        internal DoYourThingConfigurationConfigurator(ITypeProvider typeProvider, Action<IConfigurationSetting> registerAsSingleton)
         {
-            _assemblies = assemblies;
+            _typeProvider = typeProvider;
             _registerAsSingleton = registerAsSingleton;
 
             _settingKeyConventions.AddRange(SettingKeyConventions.BuiltInConventions);
@@ -68,13 +69,13 @@ namespace ConfigInjector.Configuration
 
         public void DoYourThing()
         {
-            if (_assemblies == null) throw new ConfigurationException("You must specify the assemblies to scan for configuration settings.");
+            if (_typeProvider == null) throw new ConfigurationException("You must specify a type provider used to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
 
             var settingsReader = _settingsReader ?? new AppSettingsReader(_excludedKeys.ToArray());
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 
-            var appConfigConfigurationProvider = new SettingsRegistrationService(_assemblies,
+            var appConfigConfigurationProvider = new SettingsRegistrationService(_typeProvider,
                                                                                  _registerAsSingleton,
                                                                                  _allowConfigurationEntriesThatDoNotHaveSettingsClasses,
                                                                                  settingValueConverter,

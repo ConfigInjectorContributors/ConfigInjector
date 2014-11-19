@@ -64,6 +64,10 @@
     <Compile Include="ISettingsReader.cs" />
     <Compile Include="SettingsConventions\SettingKeyConventions.cs" />
     <Compile Include="SettingsConventions\WithSuffixSettingKeyConvention.cs" />
+    <Compile Include="TypeProviders\AssemblyScanningTypeProvider.cs" />
+    <Compile Include="TypeProviders\ExplicitTypeProvider.cs" />
+    <Compile Include="TypeProviders\FilteredAssemblyScanningTypeProvider.cs" />
+    <Compile Include="TypeProviders\ITypeProvider.cs" />
     <Compile Include="ValueParsers\YoloValueParser.cs" />
     <Compile Include="ValueParsers\EnumValueParser.cs" />
     <Compile Include="IConfigurationSetting.cs" />

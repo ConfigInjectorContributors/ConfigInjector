@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using ConfigInjector.TypeProviders;
 
 namespace ConfigInjector.Configuration
 {
@@ -15,7 +16,12 @@ namespace ConfigInjector.Configuration
 
         public RegisterWithContainerConfigurationConfigurator FromAssemblies(params Assembly[] assemblies)
         {
-            return new RegisterWithContainerConfigurationConfigurator(assemblies);
+            return FromTypeProvider(new AssemblyScanningTypeProvider(assemblies));
+        }
+
+        public RegisterWithContainerConfigurationConfigurator FromTypeProvider(ITypeProvider typeProvider)
+        {
+            return new RegisterWithContainerConfigurationConfigurator(typeProvider);
         }
     }
 }
