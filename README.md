@@ -217,3 +217,31 @@ If you need to globally change the default behaviour, create a class that implem
 and use use this to wire it up:
 
     DefaultSettingsReader.SetStrategy(new MyCustomSettingsReaderStrategy());
+
+## What if I want to programmatically mess with settings values after I've read them?
+
+There are a couple of cases where you'd want to do this. Let's compare SQL Server versus Windows Service Bus as examples.
+
+With SQL Server, you can happily use a connection string containing a . for localhost:
+
+    <add key="DatabaseConnectionString" value="Data Source=.\SQLEXPRESS;Initial Catalog=SecretDatabase-Dev;Integrated Security=SSPI;" />
+
+With something like Windows/Azure Service Bus, however, it will have an opinion about this because it uses TLS and the certificate CN won't match, so something like this won't work:
+
+    <add key="ServiceBusConnectionString" value="Endpoint=sb://localhost/SecretServiceBus-Dev;StsEndpoint=https://localhost:9355/SecretServiceBus-Dev;RuntimePort=9354;ManagementPort=9355" />
+
+What we can do instead is this:
+
+    <add key="ServiceBusConnectionString" value="Endpoint=sb://{MachineName}/SecretServiceBus-Dev;StsEndpoint=https://{MachineName}:9355/SecretServiceBus-Dev;RuntimePort=9354;ManagementPort=9355" />
+
+and then override that configuration setting's value on the way out:
+
+    public class ServiceBusConnectionString : ConfigurationSetting<string>
+    {
+        public override string Value
+        {
+            get { return base.Value.Replace("{MachineName}", Environment.MachineName); }
+            set { base.Value = value; }
+        }
+    }
+
