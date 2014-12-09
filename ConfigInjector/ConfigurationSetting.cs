@@ -12,7 +12,7 @@ namespace ConfigInjector
         private bool _initialized;
         private T _value;
 
-        public T Value
+        public virtual T Value
         {
             get { return _value; }
             set
