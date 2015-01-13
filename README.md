@@ -84,7 +84,7 @@ You can pick your favourite container from the list below or roll your own.
     builder.RegisterType<DeepThought>();
 
     ConfigurationConfigurator.RegisterConfigurationSettings()
-                             .FromAssemblies(typeof (DeepThought).Assembly)
+                             .FromAssemblies(ThisAssembly)
                              .RegisterWithContainer(configSetting => builder.RegisterInstance(configSetting)
                                                                             .AsSelf()
                                                                             .SingleInstance())
