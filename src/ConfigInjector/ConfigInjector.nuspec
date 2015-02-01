@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>ConfigInjector</id>
     <version>$version$</version>
-    <title>$title$</title>
+    <title>ConfigInjector</title>
     <authors>Andrew Harcourt</authors>
     <owners>Andrew Harcourt</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple way to inject strongly-typed configuration settings into your application via [web|app].config.</description>
     <releaseNotes>.</releaseNotes>
-    <copyright>Copyright 2013 Andrew Harcourt</copyright>
+    <copyright>Copyright 2013-2015 Andrew Harcourt</copyright>
     <tags>config configuration setting application ConfigurationManager Autofac Windsor Ninject</tags>
   </metadata>
 </package>
