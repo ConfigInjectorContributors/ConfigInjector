@@ -1,0 +1,8 @@
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\bin\Debug\ConfigInjector.nuspec
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\bin\Debug\ConfigInjector.XML
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\bin\Debug\ConfigInjector.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\bin\Debug\ConfigInjector.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\bin\Debug\ThirdDrawer.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\obj\Debug\ConfigInjector.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\obj\Debug\ConfigInjector.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\ConfigInjector\obj\Debug\ConfigInjector.csprojResolveAssemblyReference.cache

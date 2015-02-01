@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ConfigInjector</name>
+    </assembly>
+    <members>
+        <member name="M:ConfigInjector.Configuration.DoYourThingConfigurationConfigurator.AllowConfigurationEntriesThatDoNotHaveSettingsClasses(System.Boolean)">
+            <summary>
+            If set to false (default), ConfigInjector will blow up when there are settings in the [web|app].config file that
+            do not have corresponding setting types in your application.
+            </summary>
+        </member>
+        <member name="M:ConfigInjector.Configuration.DoYourThingConfigurationConfigurator.WithAppSettingsReader(ConfigInjector.ISettingsReader)">
+            <summary>
+            This allows you to substitute your own application settings reader. A good use case for this is in having a unit/convention
+            test suite that opens your application's app.config file (rather than the test project's one) and asserts that all configuration
+            settings are present and accounted for.
+            </summary>
+        </member>
+        <member name="T:ConfigInjector.SettingsRegistrationService">
+            <summary>
+                Stateful service for settings registration.
+            </summary>
+        </member>
+    </members>
+</doc>

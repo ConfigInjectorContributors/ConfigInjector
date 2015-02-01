@@ -1,0 +1,16 @@
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\ConfigInjector.nuspec
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Sample.WithNinject.exe.config
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Sample.WithNinject.exe
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Sample.WithNinject.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\ConfigInjector.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Ninject.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Sample.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\ThirdDrawer.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\ConfigInjector.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\ConfigInjector.xml
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Sample.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Ninject.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\bin\Debug\Ninject.xml
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\obj\Debug\Sample.WithNinject.csprojResolveAssemblyReference.cache
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\obj\Debug\Sample.WithNinject.exe
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.WithNinject\obj\Debug\Sample.WithNinject.pdb

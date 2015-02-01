@@ -1,0 +1,14 @@
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\ConfigInjector.nuspec
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\Sample.UnitTests.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\Sample.UnitTests.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\ConfigInjector.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\Sample.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\ThirdDrawer.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\ConfigInjector.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\ConfigInjector.xml
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\Sample.pdb
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\obj\Debug\Sample.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\obj\Debug\Sample.UnitTests.dll
+C:\Users\andrewh\Code\Mine\ConfigInjector\Sample.UnitTests\obj\Debug\Sample.UnitTests.pdb
