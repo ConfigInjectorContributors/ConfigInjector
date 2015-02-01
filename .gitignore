@@ -1,4 +1,4 @@
 *.user
 *.suo
-*/bin/*
-*/obj/*
+**/bin/*
+**/obj/*
