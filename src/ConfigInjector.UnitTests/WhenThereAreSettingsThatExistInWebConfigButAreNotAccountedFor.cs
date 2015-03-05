@@ -19,6 +19,7 @@ namespace ConfigInjector.UnitTests
             return new SettingsRegistrationService(new AssemblyScanningTypeProvider(assemblies),
                                                    setting => { },
                                                    false,
+                                                   false,
                                                    new SettingValueConverter(),
                                                    settingsReader,
                                                    SettingKeyConventions.BuiltInConventions.ToArray());

@@ -18,6 +18,7 @@ namespace ConfigInjector
         private readonly ITypeProvider _typeProvider;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+        private readonly bool _allowSettingsClassesThatDoNotHaveEntriesInWebConfig;
         private readonly SettingValueConverter _settingValueConverter;
         private readonly ISettingsReader _settingsReader;
         private readonly ISettingKeyConvention[] _settingKeyConventions;
@@ -27,6 +28,7 @@ namespace ConfigInjector
         public SettingsRegistrationService(ITypeProvider typeProvider,
                                            Action<IConfigurationSetting> registerAsSingleton,
                                            bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
+                                           bool allowSettingsClassesThatDoNotHaveEntriesInWebConfig,
                                            SettingValueConverter settingValueConverter,
                                            ISettingsReader settingsReader,
                                            ISettingKeyConvention[] settingKeyConventions)
@@ -34,6 +36,7 @@ namespace ConfigInjector
             _typeProvider = typeProvider;
             _registerAsSingleton = registerAsSingleton;
             _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+            _allowSettingsClassesThatDoNotHaveEntriesInWebConfig = allowSettingsClassesThatDoNotHaveEntriesInWebConfig;
             _settingValueConverter = settingValueConverter;
             _settingsReader = settingsReader;
             _settingKeyConventions = settingKeyConventions;
@@ -43,7 +46,7 @@ namespace ConfigInjector
         {
             _stronglyTypedSettings = LoadConfigurationSettings();
 
-            if (!_allowEntriesInWebConfigThatDoNotHaveSettingsClasses)
+            if (!_allowEntriesInWebConfigThatDoNotHaveSettingsClasses && !_allowSettingsClassesThatDoNotHaveEntriesInWebConfig)
             {
                 AssertThatNoAdditionalSettingsExist();
             }
@@ -61,6 +64,7 @@ namespace ConfigInjector
                 .Where(t => !t.IsAbstract)
                 .Where(t => typeof (IConfigurationSetting).IsAssignableFrom(t))
                 .Select(GetConfigSettingFor)
+                .NotNull()
                 .ToArray();
 
             return configurationSettings;
@@ -74,7 +78,15 @@ namespace ConfigInjector
                 .ToArray();
 
             var matchingSettingCount = settingValueStrings.Count();
-            if (matchingSettingCount == 0) throw new MissingSettingException(type);
+            if (matchingSettingCount == 0)
+            {
+                if (_allowSettingsClassesThatDoNotHaveEntriesInWebConfig)
+                {
+                    return null;
+                }
+
+                throw new MissingSettingException(type);
+            }
             if (matchingSettingCount > 1) throw new AmbiguousSettingException(type, settingValueStrings);
 
             var settingValueString = settingValueStrings.Single();

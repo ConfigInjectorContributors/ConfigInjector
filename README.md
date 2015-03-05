@@ -197,6 +197,17 @@ IF you genuinely don't want to assert that nobody is using silly/dangerous inlin
                              
 This approach is also useful for environments like Windows Azure, where 1) enumerating all configuration settings is not supported and 2) the hosting environment may randomly add unexpected settings to your application's configuration.
 
+You can also ignore the reverse of this, i.e. settings classes that don't have a corresponding configuration entry, by using the following:
+
+    ConfigurationConfigurator.RegisterConfigurationSettings()
+                             .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
+                             .RegisterWithContainer(configSetting => /* TODO: Register this instance with your container here */ )
+                             .AllowSettingsClassesThatDoNotHaveConfigurationEntries(true)
+                             .DoYourThing();
+
+This can be useful if you have a shared set of configuration settings, but some applications don't need to specify or resolve values for all of the settings. The configuration settings that don't exist in the `[web|app].config` file won't be registered with the container.
+
+
 ## Can I load settings directly without configuring my container first?
 
 You can do this but I'd give some serious thought to whether it's a good idea in your particular case.

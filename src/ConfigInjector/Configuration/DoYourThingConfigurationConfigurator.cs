@@ -14,6 +14,7 @@ namespace ConfigInjector.Configuration
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
 
         private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
+        private bool _allowSettingsClassesThatDoNotHaveConfigurationEntries;
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
         private ISettingsReader _settingsReader;
 
@@ -35,6 +36,17 @@ namespace ConfigInjector.Configuration
         public DoYourThingConfigurationConfigurator AllowConfigurationEntriesThatDoNotHaveSettingsClasses(bool allow)
         {
             _allowConfigurationEntriesThatDoNotHaveSettingsClasses = allow;
+            return this;
+        }
+
+        /// <summary>
+        /// If set to false (default), ConfigInjector will blow up when there are setting types
+        /// that do not have corresponding settings in the [web|app].config file. Setting types
+        /// without a corresponding setting will not be registered with the container.
+        /// </summary>
+        public DoYourThingConfigurationConfigurator AllowSettingsClassesThatDoNotHaveConfigurationEntries(bool allow)
+        {
+            _allowSettingsClassesThatDoNotHaveConfigurationEntries = allow;
             return this;
         }
 
@@ -78,6 +90,7 @@ namespace ConfigInjector.Configuration
             var appConfigConfigurationProvider = new SettingsRegistrationService(_typeProvider,
                                                                                  _registerAsSingleton,
                                                                                  _allowConfigurationEntriesThatDoNotHaveSettingsClasses,
+                                                                                 _allowSettingsClassesThatDoNotHaveConfigurationEntries,
                                                                                  settingValueConverter,
                                                                                  settingsReader,
                                                                                  _settingKeyConventions.ToArray());
