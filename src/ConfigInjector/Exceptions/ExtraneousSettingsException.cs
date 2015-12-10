@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace ConfigInjector.Exceptions
 {
@@ -13,7 +12,7 @@ namespace ConfigInjector.Exceptions
 
         private static string BuildMessage(IEnumerable<string> extraneousWebConfigEntries)
         {
-            var messages = extraneousWebConfigEntries.Select(k => "Setting {0} appears in [web|app].config but has no corresponding ConfigurationSetting type.".FormatWith(k));
+            var messages = extraneousWebConfigEntries.Select(k => string.Format("Setting {0} appears in [web|app].config but has no corresponding ConfigurationSetting type.", k));
             var message = string.Join(Environment.NewLine, messages);
             return message;
         }
