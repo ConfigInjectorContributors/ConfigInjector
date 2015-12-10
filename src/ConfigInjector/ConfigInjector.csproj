@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
+    <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="Exceptions\SettingParsingException.cs" />
     <Compile Include="QuickAndDirty\DefaultSettingsReader.cs" />
     <Compile Include="Exceptions\AmbiguousSettingException.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />

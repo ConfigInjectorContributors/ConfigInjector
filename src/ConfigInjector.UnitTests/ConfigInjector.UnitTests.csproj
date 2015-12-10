@@ -49,6 +49,7 @@
     <Compile Include="SomeAmbiguousThingSetting.cs" />
     <Compile Include="TestFor.cs" />
     <Compile Include="WhenConvertingConfigurationSettingValues.cs" />
+    <Compile Include="WhenParsingASettingThatHasAnInvalidValue.cs" />
     <Compile Include="WhenReadingTheValueForASettingThatDoesNotExist.cs" />
     <Compile Include="WhenThereAreSettingsThatExistInWebConfigButAreNotAccountedFor.cs" />
     <Compile Include="WhenThereAreSettingsThatHaveAmbiguousMatchesInWebConfig.cs" />

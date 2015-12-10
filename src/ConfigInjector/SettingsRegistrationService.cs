@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
 using ConfigInjector.TypeProviders;
-using ThirdDrawer.Extensions;
 using ThirdDrawer.Extensions.CollectionExtensionMethods;
 
 namespace ConfigInjector
@@ -15,21 +13,21 @@ namespace ConfigInjector
     /// </summary>
     internal class SettingsRegistrationService
     {
-        private readonly ITypeProvider _typeProvider;
-        private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
-        private readonly SettingValueConverter _settingValueConverter;
-        private readonly ISettingsReader _settingsReader;
+        private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly ISettingKeyConvention[] _settingKeyConventions;
+        private readonly ISettingsReader _settingsReader;
+        private readonly SettingValueConverter _settingValueConverter;
+        private readonly ITypeProvider _typeProvider;
 
         private IConfigurationSetting[] _stronglyTypedSettings;
 
         public SettingsRegistrationService(ITypeProvider typeProvider,
-                                           Action<IConfigurationSetting> registerAsSingleton,
-                                           bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
-                                           SettingValueConverter settingValueConverter,
-                                           ISettingsReader settingsReader,
-                                           ISettingKeyConvention[] settingKeyConventions)
+            Action<IConfigurationSetting> registerAsSingleton,
+            bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
+            SettingValueConverter settingValueConverter,
+            ISettingsReader settingsReader,
+            ISettingKeyConvention[] settingKeyConventions)
         {
             _typeProvider = typeProvider;
             _registerAsSingleton = registerAsSingleton;
@@ -84,7 +82,11 @@ namespace ConfigInjector
         private IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
         {
             var settingType = type.GetProperty("Value").PropertyType;
-            var settingValue = (dynamic) _settingValueConverter.ParseSettingValue(settingType, settingValueString);
+
+            dynamic settingValue;
+           
+                settingValue = _settingValueConverter.ParseSettingValue(settingType, settingValueString);
+                
 
             var setting = (IConfigurationSetting) Activator.CreateInstance(type);
             ((dynamic) setting).Value = settingValue;
@@ -95,8 +97,8 @@ namespace ConfigInjector
         private void AssertThatNoAdditionalSettingsExist()
         {
             var extraneousWebConfigEntries = _settingsReader.AllKeys
-                                                            .Where(s => !StronglyTypedSettingExistsFor(s))
-                                                            .ToArray();
+                .Where(s => !StronglyTypedSettingExistsFor(s))
+                .ToArray();
 
             if (extraneousWebConfigEntries.None()) return;
 
@@ -114,7 +116,7 @@ namespace ConfigInjector
         private bool StronglyTypedSettingExistsFor(string key)
         {
             var possibleKeysForType = _stronglyTypedSettings.SelectMany(t => GetPossibleKeysFor(t.GetType()))
-                                                        .ToArray();
+                .ToArray();
             return possibleKeysForType
                 .Where(k => k == key)
                 .Any();
