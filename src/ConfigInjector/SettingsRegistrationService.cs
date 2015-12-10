@@ -4,7 +4,6 @@ using System.Linq;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
 using ConfigInjector.TypeProviders;
-using ThirdDrawer.Extensions.CollectionExtensionMethods;
 
 namespace ConfigInjector
 {
@@ -68,7 +67,7 @@ namespace ConfigInjector
         {
             var settingValueStrings = GetPossibleKeysFor(type)
                 .Select(k => _settingsReader.ReadValue(k))
-                .NotNull()
+                .Where(v => v != null)
                 .ToArray();
 
             var matchingSettingCount = settingValueStrings.Count();
@@ -100,7 +99,7 @@ namespace ConfigInjector
                 .Where(s => !StronglyTypedSettingExistsFor(s))
                 .ToArray();
 
-            if (extraneousWebConfigEntries.None()) return;
+            if (!extraneousWebConfigEntries.Any()) return;
 
             throw new ExtraneousSettingsException(extraneousWebConfigEntries);
         }
@@ -109,7 +108,7 @@ namespace ConfigInjector
         {
             return _settingKeyConventions
                 .Select(sc => sc.KeyFor(type))
-                .NotNull()
+                .Where(k => k != null)
                 .Distinct();
         }
 

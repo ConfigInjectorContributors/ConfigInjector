@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using ConfigInjector.Configuration;
 using ConfigInjector.ValueParsers;
-using ThirdDrawer.Extensions.CollectionExtensionMethods;
-using ThirdDrawer.Extensions.TypeExtensionMethods;
 
 namespace ConfigInjector.QuickAndDirty
 {
@@ -27,7 +25,7 @@ namespace ConfigInjector.QuickAndDirty
                 .GetFrames()
                 .Select(f => f.GetMethod())
                 .Select(m => m.DeclaringType)
-                .NotNull()
+                .Where(t => t != null)
                 .Select(t => t.Assembly)
                 .Distinct()
                 .ToArray();
@@ -36,7 +34,7 @@ namespace ConfigInjector.QuickAndDirty
             var valueParsers = assembliesInCallStack
                 .SelectMany(a => a.GetExportedTypes())
                 .Where(t => typeof(IValueParser).IsAssignableFrom(t))
-                .Where(t => t.IsInstantiable())
+                .Where(IsInstantiable)
                 .Select(t => (IValueParser)Activator.CreateInstance(t))
                 .ToArray();
 
@@ -53,6 +51,11 @@ namespace ConfigInjector.QuickAndDirty
         public T Get<T>()
         {
             return _settings.Value.OfType<T>().First();
+        }
+
+        private bool IsInstantiable(Type type)
+        {
+            return !type.IsInterface && !type.IsAbstract && !type.ContainsGenericParameters;
         }
     }
 }
