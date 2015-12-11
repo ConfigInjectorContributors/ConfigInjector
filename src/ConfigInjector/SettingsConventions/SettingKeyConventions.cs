@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ThirdDrawer.Extensions.TypeExtensionMethods;
 
 namespace ConfigInjector.SettingsConventions
 {
@@ -8,8 +11,15 @@ namespace ConfigInjector.SettingsConventions
         {
             get
             {
-                yield return new DefaultSettingKeyConvention();
-                yield return new WithSuffixSettingKeyConvention();
+                var builtInConventions = typeof (SettingKeyConventions).Assembly
+                    .DefinedTypes
+                    .Where(t => t.IsAssignableTo<ISettingKeyConvention>())
+                    .Where(t => t.IsInstantiable())
+                    .Select(Activator.CreateInstance)
+                    .Cast<ISettingKeyConvention>()
+                    .ToArray();
+
+                return builtInConventions;
             }
         }
     }
