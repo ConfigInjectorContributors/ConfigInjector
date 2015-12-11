@@ -61,6 +61,7 @@
     <Compile Include="SettingsConventions\ISettingKeyConvention.cs" />
     <Compile Include="ISettingsReader.cs" />
     <Compile Include="SettingsConventions\SettingKeyConventions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="SettingsConventions\WithSuffixSettingKeyConvention.cs" />
     <Compile Include="TypeProviders\AssemblyScanningTypeProvider.cs" />
     <Compile Include="TypeProviders\ExplicitTypeProvider.cs" />
@@ -81,6 +82,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
