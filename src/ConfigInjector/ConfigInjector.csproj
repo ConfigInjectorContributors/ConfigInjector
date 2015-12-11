@@ -20,7 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ConfigInjector.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +30,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\ConfigInjector.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -44,8 +46,11 @@
   <ItemGroup>
     <Compile Include="AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
+    <Compile Include="Configuration\NullLogger.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="Exceptions\SettingParsingException.cs" />
+    <Compile Include="IConfigInjectorLogger.cs" />
+    <Compile Include="ISettingsOverrider.cs" />
     <Compile Include="QuickAndDirty\DefaultSettingsReader.cs" />
     <Compile Include="Exceptions\AmbiguousSettingException.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />

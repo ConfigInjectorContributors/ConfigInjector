@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ConfigInjector.Configuration;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
 using ConfigInjector.TypeProviders;
@@ -16,23 +17,19 @@ namespace ConfigInjector.UnitTests
 
             var settingsReader = new EmptySettingsReader();
 
-            return new SettingsRegistrationService(new AssemblyScanningTypeProvider(assemblies),
-                                                   setting => { },
-                                                   true,
-                                                   new SettingValueConverter(),
+            return new SettingsRegistrationService(new ConsoleLogger(),
+                                                   new AssemblyScanningTypeProvider(assemblies),
+                                                   SettingKeyConventions.BuiltInConventions.ToArray(),
                                                    settingsReader,
-                                                   SettingKeyConventions.BuiltInConventions.ToArray());
+                                                   new NoOpSettingsOverrider(),
+                                                   new SettingValueConverter(),
+                                                   true,
+                                                   setting => { }
+                );
         }
 
         protected override void When()
         {
-        }
-
-        [Test]
-        [ExpectedException(typeof (MissingSettingException))]
-        public void AMissingSettingExceptionShouldBeThrown()
-        {
-            Subject.GetConfigSettingFor(typeof (SomeMissingSetting));
         }
 
         private class SomeMissingSetting : ConfigurationSetting<string>
@@ -50,6 +47,13 @@ namespace ConfigInjector.UnitTests
             {
                 get { yield break; }
             }
+        }
+
+        [Test]
+        [ExpectedException(typeof (MissingSettingException))]
+        public void AMissingSettingExceptionShouldBeThrown()
+        {
+            Subject.GetConfigSettingFor(typeof (SomeMissingSetting));
         }
     }
 }

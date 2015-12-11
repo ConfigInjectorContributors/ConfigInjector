@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ConfigInjector.Configuration;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
 using ConfigInjector.TypeProviders;
@@ -16,32 +17,28 @@ namespace ConfigInjector.UnitTests
 
             var settingsReader = new AmbiguousSettingsReader();
 
-            return new SettingsRegistrationService(new AssemblyScanningTypeProvider(assemblies), 
-                                                   setting => { },
-                                                   false,
-                                                   new SettingValueConverter(),
+            return new SettingsRegistrationService(new ConsoleLogger(),
+                                                   new AssemblyScanningTypeProvider(assemblies),
+                                                   SettingKeyConventions.BuiltInConventions.ToArray(),
                                                    settingsReader,
-                                                   SettingKeyConventions.BuiltInConventions.ToArray());
+                                                   new NoOpSettingsOverrider(),
+                                                   new SettingValueConverter(),
+                                                   false,
+                                                   setting => { }
+                                                   );
         }
 
         protected override void When()
         {
         }
 
-        [Test]
-        [ExpectedException(typeof (AmbiguousSettingException))]
-        public void AnAmbiguousSettingExceptionShouldBeThrown()
-        {
-            Subject.RegisterConfigurationSettings();
-        }
-
         private class AmbiguousSettingsReader : ISettingsReader
         {
             private readonly Dictionary<string, string> _settings = new[]
-            {
-                new KeyValuePair<string, string>("SomeAmbiguousThing", "foo"),
-                new KeyValuePair<string, string>("SomeAmbiguousThingSetting", "bar"),
-            }.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                                                                    {
+                                                                        new KeyValuePair<string, string>("SomeAmbiguousThing", "foo"),
+                                                                        new KeyValuePair<string, string>("SomeAmbiguousThingSetting", "bar")
+                                                                    }.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
             public string ReadValue(string key)
             {
@@ -53,6 +50,13 @@ namespace ConfigInjector.UnitTests
             {
                 get { return _settings.Keys; }
             }
+        }
+
+        [Test]
+        [ExpectedException(typeof (AmbiguousSettingException))]
+        public void AnAmbiguousSettingExceptionShouldBeThrown()
+        {
+            Subject.RegisterConfigurationSettings();
         }
     }
 }

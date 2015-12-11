@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ConfigInjector.Configuration;
 using ConfigInjector.Exceptions;
 using ConfigInjector.SettingsConventions;
 using ConfigInjector.TypeProviders;
@@ -16,33 +17,29 @@ namespace ConfigInjector.UnitTests
 
             var settingsReader = new ExtraneousSettingsReader();
 
-            return new SettingsRegistrationService(new AssemblyScanningTypeProvider(assemblies),
-                                                   setting => { },
-                                                   false,
-                                                   new SettingValueConverter(),
+            return new SettingsRegistrationService(new ConsoleLogger(),
+                                                   new AssemblyScanningTypeProvider(assemblies),
+                                                   SettingKeyConventions.BuiltInConventions.ToArray(),
                                                    settingsReader,
-                                                   SettingKeyConventions.BuiltInConventions.ToArray());
+                                                   new NoOpSettingsOverrider(),
+                                                   new SettingValueConverter(),
+                                                   false,
+                                                   setting => { }
+                );
         }
 
         protected override void When()
         {
         }
 
-        [Test]
-        [ExpectedException(typeof (ExtraneousSettingsException))]
-        public void AnExtraneousSettingsExceptionShouldBeThrown()
-        {
-            Subject.RegisterConfigurationSettings();
-        }
-
         private class ExtraneousSettingsReader : ISettingsReader
         {
             private readonly Dictionary<string, string> _settings = new[]
-            {
-                new KeyValuePair<string, string>(typeof (SomeAmbiguousThingSetting).Name, "DoesNotMatter"),
-                new KeyValuePair<string, string>("SomeSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter"),
-                new KeyValuePair<string, string>("SomeOtherSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter"),
-            }.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                                                                    {
+                                                                        new KeyValuePair<string, string>(typeof (SomeAmbiguousThingSetting).Name, "DoesNotMatter"),
+                                                                        new KeyValuePair<string, string>("SomeSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter"),
+                                                                        new KeyValuePair<string, string>("SomeOtherSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter")
+                                                                    }.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
             public string ReadValue(string key)
             {
@@ -54,6 +51,13 @@ namespace ConfigInjector.UnitTests
             {
                 get { return _settings.Keys; }
             }
+        }
+
+        [Test]
+        [ExpectedException(typeof (ExtraneousSettingsException))]
+        public void AnExtraneousSettingsExceptionShouldBeThrown()
+        {
+            Subject.RegisterConfigurationSettings();
         }
     }
 }

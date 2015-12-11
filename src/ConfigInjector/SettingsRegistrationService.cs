@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConfigInjector.Exceptions;
+using ConfigInjector.Extensions;
 using ConfigInjector.SettingsConventions;
 using ConfigInjector.TypeProviders;
 
@@ -13,27 +14,41 @@ namespace ConfigInjector
     internal class SettingsRegistrationService
     {
         private readonly bool _allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+        private readonly IConfigInjectorLogger _logger;
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
         private readonly ISettingKeyConvention[] _settingKeyConventions;
+        private readonly ISettingsOverrider _settingsOverrider;
         private readonly ISettingsReader _settingsReader;
         private readonly SettingValueConverter _settingValueConverter;
         private readonly ITypeProvider _typeProvider;
 
         private IConfigurationSetting[] _stronglyTypedSettings;
 
-        public SettingsRegistrationService(ITypeProvider typeProvider,
-            Action<IConfigurationSetting> registerAsSingleton,
-            bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
-            SettingValueConverter settingValueConverter,
-            ISettingsReader settingsReader,
-            ISettingKeyConvention[] settingKeyConventions)
+        public SettingsRegistrationService(IConfigInjectorLogger logger,
+                                           ITypeProvider typeProvider,
+                                           ISettingKeyConvention[] settingKeyConventions,
+                                           ISettingsReader settingsReader,
+                                           ISettingsOverrider settingsOverrider,
+                                           SettingValueConverter settingValueConverter,
+                                           bool allowEntriesInWebConfigThatDoNotHaveSettingsClasses,
+                                           Action<IConfigurationSetting> registerAsSingleton)
         {
+            if (logger == null) throw new ArgumentNullException("logger");
+            if (typeProvider == null) throw new ArgumentNullException("typeProvider");
+            if (settingKeyConventions == null) throw new ArgumentNullException("settingKeyConventions");
+            if (settingsReader == null) throw new ArgumentNullException("settingsReader");
+            if (settingsOverrider == null) throw new ArgumentNullException("settingsOverrider");
+            if (settingValueConverter == null) throw new ArgumentNullException("settingValueConverter");
+            if (registerAsSingleton == null) throw new ArgumentNullException("registerAsSingleton");
+
+            _logger = logger;
             _typeProvider = typeProvider;
-            _registerAsSingleton = registerAsSingleton;
-            _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
-            _settingValueConverter = settingValueConverter;
-            _settingsReader = settingsReader;
             _settingKeyConventions = settingKeyConventions;
+            _settingsReader = settingsReader;
+            _settingsOverrider = settingsOverrider;
+            _settingValueConverter = settingValueConverter;
+            _allowEntriesInWebConfigThatDoNotHaveSettingsClasses = allowEntriesInWebConfigThatDoNotHaveSettingsClasses;
+            _registerAsSingleton = registerAsSingleton;
         }
 
         public void RegisterConfigurationSettings()
@@ -54,38 +69,42 @@ namespace ConfigInjector
         private IConfigurationSetting[] LoadConfigurationSettings()
         {
             var configurationSettings = _typeProvider.Get()
-                .Where(t => !t.IsInterface)
-                .Where(t => !t.IsAbstract)
-                .Where(t => typeof (IConfigurationSetting).IsAssignableFrom(t))
-                .Select(GetConfigSettingFor)
-                .ToArray();
+                                                     .Where(t => t.IsAssignableTo<IConfigurationSetting>())
+                                                     .Where(t => t.IsInstantiable())
+                                                     .Select(GetConfigSettingFor)
+                                                     .ToArray();
 
             return configurationSettings;
         }
 
         internal IConfigurationSetting GetConfigSettingFor(Type type)
         {
-            var settingValueStrings = GetPossibleKeysFor(type)
-                .Select(k => _settingsReader.ReadValue(k))
-                .Where(v => v != null)
-                .ToArray();
+            var potentialMatches = GetPossibleKeysFor(type)
+                .ToDictionary(k => k, k => _settingsReader.ReadValue(k))
+                .Where(kvp => kvp.Value != null)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-            var matchingSettingCount = settingValueStrings.Count();
-            if (matchingSettingCount == 0) throw new MissingSettingException(type);
-            if (matchingSettingCount > 1) throw new AmbiguousSettingException(type, settingValueStrings);
+            var potentialMatchCount = potentialMatches.Count();
+            if (potentialMatchCount == 0) throw new MissingSettingException(type);
+            if (potentialMatchCount > 1) throw new AmbiguousSettingException(type, potentialMatches);
 
-            var settingValueString = settingValueStrings.Single();
-            return ConstructSettingObject(type, settingValueString);
+            var setting = potentialMatches.Single();
+            _logger.Log("Setting for type {0} loaded from settings provider (key: {1}; value: {2})", type, setting.Key, setting.Value);
+
+            string overriddenValue;
+            if (_settingsOverrider.TryFindOverrideFor(setting.Key, out overriddenValue))
+            {
+                _logger.Log("Setting for type {0} overridden (key: {1}; value: {2})", type, setting.Key, overriddenValue);
+                return ConstructSettingObject(type, overriddenValue);
+            }
+
+            return ConstructSettingObject(type, setting.Value);
         }
 
         private IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
         {
             var settingType = type.GetProperty("Value").PropertyType;
-
-            dynamic settingValue;
-           
-                settingValue = _settingValueConverter.ParseSettingValue(settingType, settingValueString);
-                
+            dynamic settingValue = _settingValueConverter.ParseSettingValue(settingType, settingValueString);
 
             var setting = (IConfigurationSetting) Activator.CreateInstance(type);
             ((dynamic) setting).Value = settingValue;
@@ -96,8 +115,8 @@ namespace ConfigInjector
         private void AssertThatNoAdditionalSettingsExist()
         {
             var extraneousWebConfigEntries = _settingsReader.AllKeys
-                .Where(s => !StronglyTypedSettingExistsFor(s))
-                .ToArray();
+                                                            .Where(s => !StronglyTypedSettingExistsFor(s))
+                                                            .ToArray();
 
             if (!extraneousWebConfigEntries.Any()) return;
 
@@ -115,7 +134,7 @@ namespace ConfigInjector
         private bool StronglyTypedSettingExistsFor(string key)
         {
             var possibleKeysForType = _stronglyTypedSettings.SelectMany(t => GetPossibleKeysFor(t.GetType()))
-                .ToArray();
+                                                            .ToArray();
             return possibleKeysForType
                 .Where(k => k == key)
                 .Any();
