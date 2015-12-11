@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
-namespace ConfigInjector
+namespace ConfigInjector.Infrastructure.SettingsReaders
 {
     public class AppSettingsReader : ISettingsReader
     {

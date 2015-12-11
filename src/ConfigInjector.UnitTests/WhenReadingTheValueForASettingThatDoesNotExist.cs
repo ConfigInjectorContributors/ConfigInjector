@@ -2,8 +2,10 @@
 using System.Linq;
 using ConfigInjector.Configuration;
 using ConfigInjector.Exceptions;
-using ConfigInjector.SettingsConventions;
-using ConfigInjector.TypeProviders;
+using ConfigInjector.Infrastructure;
+using ConfigInjector.Infrastructure.SettingsConventions;
+using ConfigInjector.Infrastructure.SettingsReaders;
+using ConfigInjector.Infrastructure.TypeProviders;
 using NUnit.Framework;
 
 namespace ConfigInjector.UnitTests

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Reflection;
 using ConfigInjector.Exceptions;
-using ConfigInjector.SettingsConventions;
-using ConfigInjector.TypeProviders;
-using ConfigInjector.ValueParsers;
+using ConfigInjector.Infrastructure;
+using ConfigInjector.Infrastructure.Logging;
+using ConfigInjector.Infrastructure.SettingsConventions;
+using ConfigInjector.Infrastructure.SettingsOverriders;
+using ConfigInjector.Infrastructure.SettingsReaders;
+using ConfigInjector.Infrastructure.TypeProviders;
+using ConfigInjector.Infrastructure.ValueParsers;
 
 namespace ConfigInjector.Configuration
 {
@@ -66,6 +70,12 @@ namespace ConfigInjector.Configuration
         public DoYourThingConfigurationConfigurator WithAppSettingsReader(ISettingsReader settingsReader)
         {
             _settingsReader = settingsReader;
+            return this;
+        }
+
+        public DoYourThingConfigurationConfigurator WithAppSettingsOverrider(ISettingsOverrider settingsOverrider)
+        {
+            _settingsOverrider = settingsOverrider;
             return this;
         }
 

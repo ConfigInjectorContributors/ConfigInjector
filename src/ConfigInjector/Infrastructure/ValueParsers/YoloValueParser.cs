@@ -1,22 +1,22 @@
 ﻿using System;
 
-namespace ConfigInjector.ValueParsers
+namespace ConfigInjector.Infrastructure.ValueParsers
 {
-    public class UriValueParser : IValueParser
+    public class YoloValueParser : IValueParser
     {
         public int SortOrder
         {
-            get { return 100; }
+            get { return int.MaxValue; }
         }
 
         public bool CanParse(Type settingValueType)
         {
-            return typeof (Uri).IsAssignableFrom(settingValueType);
+            return true; // YOLO!!
         }
 
         public object Parse(Type settingValueType, string settingValueString)
         {
-            return new Uri(settingValueString);
+            return Convert.ChangeType(settingValueString, settingValueType);
         }
     }
 }

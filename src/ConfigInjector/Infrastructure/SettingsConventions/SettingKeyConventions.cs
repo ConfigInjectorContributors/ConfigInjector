@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ConfigInjector.Extensions;
 
-namespace ConfigInjector.SettingsConventions
+namespace ConfigInjector.Infrastructure.SettingsConventions
 {
     public static class SettingKeyConventions
     {

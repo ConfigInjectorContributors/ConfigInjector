@@ -1,4 +1,4 @@
-﻿namespace ConfigInjector.Configuration
+﻿namespace ConfigInjector.Infrastructure.Logging
 {
     internal class NullLogger : IConfigInjectorLogger
     {

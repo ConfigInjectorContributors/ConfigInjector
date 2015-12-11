@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ConfigInjector.TypeProviders
+namespace ConfigInjector.Infrastructure.TypeProviders
 {
     public class ExplicitTypeProvider : ITypeProvider
     {

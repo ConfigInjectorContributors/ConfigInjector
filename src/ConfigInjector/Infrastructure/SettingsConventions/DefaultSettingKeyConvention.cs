@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConfigInjector.SettingsConventions
+namespace ConfigInjector.Infrastructure.SettingsConventions
 {
     public class DefaultSettingKeyConvention : ISettingKeyConvention
     {

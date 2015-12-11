@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConfigInjector
+namespace ConfigInjector.Extensions
 {
     internal static class ExceptionExtensions
     {

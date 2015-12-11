@@ -1,4 +1,5 @@
 ﻿using System;
+using ConfigInjector.Infrastructure.Logging;
 
 namespace ConfigInjector.UnitTests
 {

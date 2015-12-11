@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace ConfigInjector.ValueParsers
+namespace ConfigInjector.Infrastructure.ValueParsers
 {
     public class AnyOldParseMethodValueParser : IValueParser
     {

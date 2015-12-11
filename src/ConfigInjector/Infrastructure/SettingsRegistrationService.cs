@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Extensions;
-using ConfigInjector.SettingsConventions;
-using ConfigInjector.TypeProviders;
+using ConfigInjector.Infrastructure.Logging;
+using ConfigInjector.Infrastructure.SettingsConventions;
+using ConfigInjector.Infrastructure.SettingsOverriders;
+using ConfigInjector.Infrastructure.SettingsReaders;
+using ConfigInjector.Infrastructure.TypeProviders;
 
-namespace ConfigInjector
+namespace ConfigInjector.Infrastructure
 {
     /// <summary>
     ///     Stateful service for settings registration.

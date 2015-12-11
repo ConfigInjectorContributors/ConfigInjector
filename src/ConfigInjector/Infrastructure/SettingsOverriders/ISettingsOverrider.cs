@@ -1,4 +1,4 @@
-﻿namespace ConfigInjector
+﻿namespace ConfigInjector.Infrastructure.SettingsOverriders
 {
     public interface ISettingsOverrider
     {

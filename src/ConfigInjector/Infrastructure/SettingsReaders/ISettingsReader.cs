@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConfigInjector
+namespace ConfigInjector.Infrastructure.SettingsReaders
 {
     public interface ISettingsReader
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using ConfigInjector.Configuration;
-using ConfigInjector.ValueParsers;
+using ConfigInjector.Infrastructure.ValueParsers;
 
 namespace ConfigInjector.QuickAndDirty
 {

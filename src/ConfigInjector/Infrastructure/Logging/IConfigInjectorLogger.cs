@@ -1,4 +1,4 @@
-﻿namespace ConfigInjector
+﻿namespace ConfigInjector.Infrastructure.Logging
 {
     public interface IConfigInjectorLogger
     {

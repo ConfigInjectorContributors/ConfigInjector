@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConfigInjector.ValueParsers
+namespace ConfigInjector.Infrastructure.ValueParsers
 {
     public interface IValueParser
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using ConfigInjector.TypeProviders;
+using ConfigInjector.Infrastructure.TypeProviders;
 
 namespace ConfigInjector.Configuration
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ConfigInjector.Infrastructure;
 using NUnit.Framework;
 using Shouldly;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using ConfigInjector.Exceptions;
+using ConfigInjector.Infrastructure;
 using NUnit.Framework;
 
 namespace ConfigInjector.UnitTests
