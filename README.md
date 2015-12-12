@@ -245,3 +245,16 @@ and then override that configuration setting's value on the way out:
         }
     }
 
+## Package feeds
+
+### Stable versions
+
+Stable versions of the packages are available via nuget.org.
+
+### Pre-release versions
+
+* [NuGet v2 feed](https://www.myget.org/F/config-injector/api/v2)
+* [NuGet v3 feed](https://www.myget.org/F/config-injector/api/v3/index.json)
+
+Be careful! The pre-release feeds may contain builds from feature branches and
+pull requests as well as from the master branch.
