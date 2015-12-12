@@ -22,7 +22,7 @@ namespace ConfigInjector.Configuration
 
         private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
         private IConfigInjectorLogger _logger = new NullLogger();
-        private ISettingsOverrider _settingsOverrider = new NoOpSettingsOverrider();
+        private ISettingsOverrider _settingsOverrider = new EnvironmentVariableSettingsOverrider();
         private ISettingsReader _settingsReader;
 
         internal DoYourThingConfigurationConfigurator(ITypeProvider typeProvider, Action<IConfigurationSetting> registerAsSingleton)
