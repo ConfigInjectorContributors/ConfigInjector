@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
-using Sample.ConfigSettings;
+using Sample.Configuration;
 
 namespace Sample.UnitTests
 {

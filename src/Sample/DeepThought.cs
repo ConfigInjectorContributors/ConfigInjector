@@ -1,5 +1,5 @@
 ﻿using System;
-using Sample.ConfigSettings;
+using Sample.Configuration;
 
 namespace Sample
 {

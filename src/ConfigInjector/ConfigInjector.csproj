@@ -20,7 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ConfigInjector.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +30,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\ConfigInjector.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,10 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettingsReader.cs" />
+    <Compile Include="Infrastructure\Logging\ConsoleLogger.cs" />
+    <Compile Include="Infrastructure\SettingsOverriders\EnvironmentVariableSettingsOverrider.cs" />
+    <Compile Include="Infrastructure\SettingsOverriders\NoOpSettingsOverrider.cs" />
+    <Compile Include="Infrastructure\SettingsReaders\AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
-    <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="Infrastructure\Logging\NullLogger.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Exceptions\SettingParsingException.cs" />
+    <Compile Include="Infrastructure\Logging\IConfigInjectorLogger.cs" />
+    <Compile Include="Infrastructure\SettingsOverriders\ISettingsOverrider.cs" />
     <Compile Include="QuickAndDirty\DefaultSettingsReader.cs" />
     <Compile Include="Exceptions\AmbiguousSettingException.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
@@ -57,25 +65,25 @@
     <Compile Include="Exceptions\MissingSettingException.cs" />
     <Compile Include="QuickAndDirty\DefaultStaticSettingReaderStrategy.cs" />
     <Compile Include="QuickAndDirty\IStaticSettingReaderStrategy.cs" />
-    <Compile Include="SettingsConventions\DefaultSettingKeyConvention.cs" />
-    <Compile Include="SettingsConventions\ISettingKeyConvention.cs" />
-    <Compile Include="ISettingsReader.cs" />
-    <Compile Include="SettingsConventions\SettingKeyConventions.cs" />
+    <Compile Include="Infrastructure\SettingsConventions\DefaultSettingKeyConvention.cs" />
+    <Compile Include="Infrastructure\SettingsConventions\ISettingKeyConvention.cs" />
+    <Compile Include="Infrastructure\SettingsReaders\ISettingsReader.cs" />
+    <Compile Include="Infrastructure\SettingsConventions\SettingKeyConventions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="SettingsConventions\WithSuffixSettingKeyConvention.cs" />
-    <Compile Include="TypeProviders\AssemblyScanningTypeProvider.cs" />
-    <Compile Include="TypeProviders\ExplicitTypeProvider.cs" />
-    <Compile Include="TypeProviders\FilteredAssemblyScanningTypeProvider.cs" />
-    <Compile Include="TypeProviders\ITypeProvider.cs" />
-    <Compile Include="ValueParsers\YoloValueParser.cs" />
-    <Compile Include="ValueParsers\EnumValueParser.cs" />
+    <Compile Include="Infrastructure\SettingsConventions\WithSuffixSettingKeyConvention.cs" />
+    <Compile Include="Infrastructure\TypeProviders\AssemblyScanningTypeProvider.cs" />
+    <Compile Include="Infrastructure\TypeProviders\ExplicitTypeProvider.cs" />
+    <Compile Include="Infrastructure\TypeProviders\FilteredAssemblyScanningTypeProvider.cs" />
+    <Compile Include="Infrastructure\TypeProviders\ITypeProvider.cs" />
+    <Compile Include="Infrastructure\ValueParsers\YoloValueParser.cs" />
+    <Compile Include="Infrastructure\ValueParsers\EnumValueParser.cs" />
     <Compile Include="IConfigurationSetting.cs" />
-    <Compile Include="ValueParsers\IValueParser.cs" />
-    <Compile Include="ValueParsers\AnyOldParseMethodValueParser.cs" />
+    <Compile Include="Infrastructure\ValueParsers\IValueParser.cs" />
+    <Compile Include="Infrastructure\ValueParsers\AnyOldParseMethodValueParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsRegistrationService.cs" />
-    <Compile Include="SettingValueConverter.cs" />
-    <Compile Include="ValueParsers\UriValueParser.cs" />
+    <Compile Include="Infrastructure\SettingsRegistrationService.cs" />
+    <Compile Include="Infrastructure\SettingValueConverter.cs" />
+    <Compile Include="Infrastructure\ValueParsers\UriValueParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ConfigInjector.nuspec">

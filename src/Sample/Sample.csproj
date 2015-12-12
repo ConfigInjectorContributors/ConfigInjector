@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigSettings\AnswerConfigurationSetting.cs" />
-    <Compile Include="ConfigSettings\QuestionConfigurationSetting.cs" />
+    <Compile Include="Configuration\AnswerConfigurationSetting.cs" />
+    <Compile Include="Configuration\QuestionConfigurationSetting.cs" />
     <Compile Include="DeepThought.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

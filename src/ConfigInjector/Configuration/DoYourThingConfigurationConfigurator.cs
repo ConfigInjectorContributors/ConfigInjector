@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using ConfigInjector.Exceptions;
-using ConfigInjector.SettingsConventions;
-using ConfigInjector.TypeProviders;
-using ConfigInjector.ValueParsers;
+using ConfigInjector.Infrastructure;
+using ConfigInjector.Infrastructure.Logging;
+using ConfigInjector.Infrastructure.SettingsConventions;
+using ConfigInjector.Infrastructure.SettingsOverriders;
+using ConfigInjector.Infrastructure.SettingsReaders;
+using ConfigInjector.Infrastructure.TypeProviders;
+using ConfigInjector.Infrastructure.ValueParsers;
 
 namespace ConfigInjector.Configuration
 {
     public class DoYourThingConfigurationConfigurator
     {
-        private readonly ITypeProvider _typeProvider;
+        private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
+        private readonly List<string> _excludedKeys = new List<string>();
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
 
-        private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
-        private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
-        private ISettingsReader _settingsReader;
-
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
-        private readonly List<string> _excludedKeys = new List<string>();
+        private readonly ITypeProvider _typeProvider;
+
+        private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
+        private IConfigInjectorLogger _logger = new NullLogger();
+        private ISettingsOverrider _settingsOverrider = new EnvironmentVariableSettingsOverrider();
+        private ISettingsReader _settingsReader;
 
         internal DoYourThingConfigurationConfigurator(ITypeProvider typeProvider, Action<IConfigurationSetting> registerAsSingleton)
         {
@@ -67,21 +72,36 @@ namespace ConfigInjector.Configuration
             return this;
         }
 
+        public DoYourThingConfigurationConfigurator WithAppSettingsOverrider(ISettingsOverrider settingsOverrider)
+        {
+            _settingsOverrider = settingsOverrider;
+            return this;
+        }
+
+        public DoYourThingConfigurationConfigurator WithLogger(IConfigInjectorLogger logger)
+        {
+            _logger = logger;
+            return this;
+        }
+
         public void DoYourThing()
         {
             if (_typeProvider == null) throw new ConfigurationException("You must specify a type provider used to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
 
             var settingsReader = _settingsReader ?? new AppSettingsReader(_excludedKeys.ToArray());
+            var settingsOverrider = _settingsOverrider ?? new NoOpSettingsOverrider();
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 
-            var appConfigConfigurationProvider = new SettingsRegistrationService(_typeProvider,
-                                                                                 _registerAsSingleton,
-                                                                                 _allowConfigurationEntriesThatDoNotHaveSettingsClasses,
-                                                                                 settingValueConverter,
-                                                                                 settingsReader,
-                                                                                 _settingKeyConventions.ToArray());
-            appConfigConfigurationProvider.RegisterConfigurationSettings();
+            var settingsRegistrationService = new SettingsRegistrationService(_logger,
+                                                                              _typeProvider,
+                                                                              _settingKeyConventions.ToArray(),
+                                                                              settingsReader,
+                                                                              settingsOverrider,
+                                                                              settingValueConverter,
+                                                                              _allowConfigurationEntriesThatDoNotHaveSettingsClasses,
+                                                                              _registerAsSingleton);
+            settingsRegistrationService.RegisterConfigurationSettings();
         }
     }
 }
