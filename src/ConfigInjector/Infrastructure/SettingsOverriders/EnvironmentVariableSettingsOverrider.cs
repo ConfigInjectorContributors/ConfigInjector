@@ -4,9 +4,11 @@ namespace ConfigInjector.Infrastructure.SettingsOverriders
 {
     public class EnvironmentVariableSettingsOverrider : ISettingsOverrider
     {
+        public const string DefaultPrefix = "AppSetting_";
+
         private readonly string _prefix;
 
-        public EnvironmentVariableSettingsOverrider(string prefix)
+        public EnvironmentVariableSettingsOverrider(string prefix = DefaultPrefix)
         {
             _prefix = prefix;
         }

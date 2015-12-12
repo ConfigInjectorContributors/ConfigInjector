@@ -7,7 +7,6 @@ namespace ConfigInjector.UnitTests.Tests.OverriddenSettingsTests
 {
     public class WhenOverridingASettingViaAnEnvironmentVariable : TestFor<EnvironmentVariableSettingsOverrider>
     {
-        private const string _prefix = "AppSetting_";
         private const string _variable = "SomeSetting";
 
         private string _actualValue;
@@ -16,13 +15,13 @@ namespace ConfigInjector.UnitTests.Tests.OverriddenSettingsTests
 
         protected override EnvironmentVariableSettingsOverrider Given()
         {
-            return new EnvironmentVariableSettingsOverrider(_prefix);
+            return new EnvironmentVariableSettingsOverrider();
         }
 
         protected override void When()
         {
             _expectedValue = "SomeValue";
-            Environment.SetEnvironmentVariable(_prefix + _variable, _expectedValue);
+            Environment.SetEnvironmentVariable(EnvironmentVariableSettingsOverrider.DefaultPrefix + _variable, _expectedValue);
 
             _isOverridden = Subject.TryFindOverrideFor(_variable, out _actualValue);
         }

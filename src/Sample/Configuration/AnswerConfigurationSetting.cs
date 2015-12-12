@@ -1,6 +1,6 @@
 ﻿using ConfigInjector;
 
-namespace Sample.ConfigSettings
+namespace Sample.Configuration
 {
     public class AnswerConfigurationSetting : ConfigurationSetting<int>
     {
