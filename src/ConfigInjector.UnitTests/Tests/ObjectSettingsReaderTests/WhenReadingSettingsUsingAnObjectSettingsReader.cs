@@ -17,13 +17,13 @@ namespace ConfigInjector.UnitTests.Tests.ObjectSettingsReaderTests
 
         protected override SettingsRegistrationService Given()
         {
-            var typeProvider = new StubTypeProvider(typeof (Foo), typeof (Bar));
+            var typeProvider = new StubTypeProvider(typeof(Foo), typeof(Bar));
 
             var settingsObject = new
-                                 {
-                                     Foo = "FooValue",
-                                     Bar = 12
-                                 };
+            {
+                Foo = "FooValue",
+                Bar = 12
+            };
             var settingsReader = new ObjectSettingsReader(settingsObject);
 
             var settingsOverrider = new NoOpSettingsOverrider();

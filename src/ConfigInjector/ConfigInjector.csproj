@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Infrastructure\Logging\ConsoleLogger.cs" />
     <Compile Include="Infrastructure\SettingsOverriders\EnvironmentVariableSettingsOverrider.cs" />
     <Compile Include="Infrastructure\SettingsOverriders\NoOpSettingsOverrider.cs" />

@@ -50,6 +50,7 @@
     <Compile Include="Stubs\StubTypeProvider.cs" />
     <Compile Include="Stubs\StubSettingsOverrider.cs" />
     <Compile Include="Stubs\StubSettingsReader.cs" />
+    <Compile Include="Tests\ObjectSettingsReaderTests\WhenReadingNestedSettingsFromAnObjectSettingsReader.cs" />
     <Compile Include="Tests\ObjectSettingsReaderTests\WhenReadingSettingsUsingAnObjectSettingsReader.cs" />
     <Compile Include="Tests\OverriddenSettingsTests\WhenOverridingASettingViaAnEnvironmentVariable.cs" />
     <Compile Include="Tests\OverriddenSettingsTests\WhenThereAreSettingsThatAreOverridden.cs" />
