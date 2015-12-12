@@ -55,6 +55,7 @@
     <Compile Include="Infrastructure\Logging\IConfigInjectorLogger.cs" />
     <Compile Include="Infrastructure\SettingsOverriders\ISettingsOverrider.cs" />
     <Compile Include="Infrastructure\SettingsReaders\IEnumeratingSettingsReader.cs" />
+    <Compile Include="Infrastructure\SettingsReaders\ObjectSettingsReader.cs" />
     <Compile Include="QuickAndDirty\DefaultSettingsReader.cs" />
     <Compile Include="Exceptions\AmbiguousSettingException.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
