@@ -6,8 +6,7 @@ using ConfigInjector.Infrastructure.Logging;
 using ConfigInjector.Infrastructure.SettingsConventions;
 using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
-using ConfigInjector.Infrastructure.TypeProviders;
-using ConfigInjector.UnitTests.Tests.MissingSettingsTests;
+using ConfigInjector.UnitTests.Stubs;
 using NUnit.Framework;
 
 namespace ConfigInjector.UnitTests.Tests.AmbiguousMatchTests
@@ -17,19 +16,17 @@ namespace ConfigInjector.UnitTests.Tests.AmbiguousMatchTests
     {
         protected override SettingsRegistrationService Given()
         {
-            var assemblies = new[] {typeof (WhenReadingTheValueForASettingThatDoesNotExist).Assembly};
-
             var settingsReader = new AmbiguousSettingsReader();
 
             return new SettingsRegistrationService(new ConsoleLogger(),
-                                                   new AssemblyScanningTypeProvider(assemblies),
+                                                   new StubTypeProvider(typeof (SomeAmbiguousThingSetting)),
                                                    SettingKeyConventions.BuiltInConventions.ToArray(),
                                                    settingsReader,
                                                    new NoOpSettingsOverrider(),
                                                    new SettingValueConverter(),
                                                    false,
                                                    setting => { }
-                                                   );
+                );
         }
 
         protected override void When()
@@ -54,6 +51,10 @@ namespace ConfigInjector.UnitTests.Tests.AmbiguousMatchTests
             {
                 get { return _settings.Keys; }
             }
+        }
+
+        public class SomeAmbiguousThingSetting : ConfigurationSetting<string>
+        {
         }
 
         [Test]

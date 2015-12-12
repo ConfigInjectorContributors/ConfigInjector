@@ -6,9 +6,7 @@ using ConfigInjector.Infrastructure.Logging;
 using ConfigInjector.Infrastructure.SettingsConventions;
 using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
-using ConfigInjector.Infrastructure.TypeProviders;
-using ConfigInjector.UnitTests.Tests.AmbiguousMatchTests.Settings;
-using ConfigInjector.UnitTests.Tests.MissingSettingsTests;
+using ConfigInjector.UnitTests.Stubs;
 using NUnit.Framework;
 
 namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
@@ -18,12 +16,10 @@ namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
     {
         protected override SettingsRegistrationService Given()
         {
-            var assemblies = new[] {typeof (WhenReadingTheValueForASettingThatDoesNotExist).Assembly};
-
             var settingsReader = new ExtraneousSettingsReader();
 
             return new SettingsRegistrationService(new ConsoleLogger(),
-                                                   new AssemblyScanningTypeProvider(assemblies),
+                                                   new StubTypeProvider(typeof (SomeSetting)),
                                                    SettingKeyConventions.BuiltInConventions.ToArray(),
                                                    settingsReader,
                                                    new NoOpSettingsOverrider(),
@@ -41,7 +37,7 @@ namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
         {
             private readonly Dictionary<string, string> _settings = new[]
                                                                     {
-                                                                        new KeyValuePair<string, string>(typeof (SomeAmbiguousThingSetting).Name, "DoesNotMatter"),
+                                                                        new KeyValuePair<string, string>(typeof (SomeSetting).Name, "DoesNotMatter"),
                                                                         new KeyValuePair<string, string>("SomeSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter"),
                                                                         new KeyValuePair<string, string>("SomeOtherSettingThatDoesNotHaveACorrespondingType", "DoesNotMatter")
                                                                     }.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
@@ -56,6 +52,10 @@ namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
             {
                 get { return _settings.Keys; }
             }
+        }
+
+        public class SomeSetting : ConfigurationSetting<string>
+        {
         }
 
         [Test]
