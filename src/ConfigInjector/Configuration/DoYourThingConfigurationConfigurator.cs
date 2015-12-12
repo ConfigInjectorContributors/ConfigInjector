@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Infrastructure;
 using ConfigInjector.Infrastructure.Logging;
@@ -14,17 +13,17 @@ namespace ConfigInjector.Configuration
 {
     public class DoYourThingConfigurationConfigurator
     {
-        private readonly ITypeProvider _typeProvider;
+        private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
+        private readonly List<string> _excludedKeys = new List<string>();
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
 
-        private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
-        private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
-        private ISettingsReader _settingsReader;
-        private ISettingsOverrider _settingsOverrider = new NoOpSettingsOverrider();
-        private IConfigInjectorLogger _logger = new NullLogger();
-
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
-        private readonly List<string> _excludedKeys = new List<string>();
+        private readonly ITypeProvider _typeProvider;
+
+        private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
+        private IConfigInjectorLogger _logger = new NullLogger();
+        private ISettingsOverrider _settingsOverrider = new NoOpSettingsOverrider();
+        private ISettingsReader _settingsReader;
 
         internal DoYourThingConfigurationConfigurator(ITypeProvider typeProvider, Action<IConfigurationSetting> registerAsSingleton)
         {
@@ -94,17 +93,15 @@ namespace ConfigInjector.Configuration
             var settingsOverrider = _settingsOverrider ?? new NoOpSettingsOverrider();
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 
-            var appConfigConfigurationProvider = new SettingsRegistrationService(_logger, _typeProvider, _settingKeyConventions.ToArray(), settingsReader, settingsOverrider, settingValueConverter, _allowConfigurationEntriesThatDoNotHaveSettingsClasses, _registerAsSingleton);
-            appConfigConfigurationProvider.RegisterConfigurationSettings();
-        }
-    }
-
-    internal class NoOpSettingsOverrider : ISettingsOverrider
-    {
-        public bool TryFindOverrideFor(string key, out string value)
-        {
-            value = null;
-            return false;
+            var settingsRegistrationService = new SettingsRegistrationService(_logger,
+                                                                              _typeProvider,
+                                                                              _settingKeyConventions.ToArray(),
+                                                                              settingsReader,
+                                                                              settingsOverrider,
+                                                                              settingValueConverter,
+                                                                              _allowConfigurationEntriesThatDoNotHaveSettingsClasses,
+                                                                              _registerAsSingleton);
+            settingsRegistrationService.RegisterConfigurationSettings();
         }
     }
 }

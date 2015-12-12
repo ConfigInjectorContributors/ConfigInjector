@@ -5,7 +5,7 @@ using ConfigInjector.Infrastructure;
 using NUnit.Framework;
 using Shouldly;
 
-namespace ConfigInjector.UnitTests
+namespace ConfigInjector.UnitTests.Tests.ValueConversionTests
 {
     [TestFixture]
     public class WhenConvertingConfigurationSettingValues

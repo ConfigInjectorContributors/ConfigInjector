@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Logging\ConsoleLogger.cs" />
+    <Compile Include="Infrastructure\SettingsOverriders\NoOpSettingsOverrider.cs" />
     <Compile Include="Infrastructure\SettingsReaders\AppSettingsReader.cs" />
     <Compile Include="Configuration\ConfigurationConfigurator.cs" />
     <Compile Include="Infrastructure\Logging\NullLogger.cs" />

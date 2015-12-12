@@ -3,7 +3,7 @@ using ConfigInjector.Exceptions;
 using ConfigInjector.Infrastructure;
 using NUnit.Framework;
 
-namespace ConfigInjector.UnitTests
+namespace ConfigInjector.UnitTests.Tests.ValueConversionTests
 {
     [TestFixture]
     public class WhenParsingASettingThatHasAnInvalidValue

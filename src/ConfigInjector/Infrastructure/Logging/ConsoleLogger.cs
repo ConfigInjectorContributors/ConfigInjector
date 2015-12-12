@@ -1,9 +1,8 @@
 ﻿using System;
-using ConfigInjector.Infrastructure.Logging;
 
-namespace ConfigInjector.UnitTests
+namespace ConfigInjector.Infrastructure.Logging
 {
-    internal class ConsoleLogger : IConfigInjectorLogger
+    public class ConsoleLogger : IConfigInjectorLogger
     {
         public void Log(string template, params object[] args)
         {

@@ -45,15 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SomeAmbiguousThingSetting.cs" />
+    <Compile Include="Tests\AmbiguousMatchTests\Settings\SomeAmbiguousThingSetting.cs" />
     <Compile Include="TestFor.cs" />
-    <Compile Include="WhenConvertingConfigurationSettingValues.cs" />
-    <Compile Include="WhenParsingASettingThatHasAnInvalidValue.cs" />
-    <Compile Include="WhenReadingTheValueForASettingThatDoesNotExist.cs" />
-    <Compile Include="WhenThereAreSettingsThatExistInWebConfigButAreNotAccountedFor.cs" />
-    <Compile Include="WhenThereAreSettingsThatHaveAmbiguousMatchesInWebConfig.cs" />
+    <Compile Include="Stubs\StubTypeProvider.cs" />
+    <Compile Include="Stubs\StubSettingsOverrider.cs" />
+    <Compile Include="Stubs\StubSettingsReader.cs" />
+    <Compile Include="Tests\OverriddenSettingsTests\WhenThereAreSettingsThatAreOverridden.cs" />
+    <Compile Include="Tests\ValueConversionTests\WhenConvertingConfigurationSettingValues.cs" />
+    <Compile Include="Tests\ValueConversionTests\WhenParsingASettingThatHasAnInvalidValue.cs" />
+    <Compile Include="Tests\MissingSettingsTests\WhenReadingTheValueForASettingThatDoesNotExist.cs" />
+    <Compile Include="Tests\ExtraneousSettingsTests\WhenThereAreSettingsThatExistInWebConfigButAreNotAccountedFor.cs" />
+    <Compile Include="Tests\AmbiguousMatchTests\WhenThereAreSettingsThatHaveAmbiguousMatchesInWebConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,6 +70,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

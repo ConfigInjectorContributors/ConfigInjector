@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using ConfigInjector;
 using ConfigInjector.Configuration;
+using ConfigInjector.Infrastructure.Logging;
 using NUnit.Framework;
 using Sample.IntegrationTests.ConfigurationSettings;
 using Shouldly;
@@ -22,6 +23,7 @@ namespace Sample.IntegrationTests
             ConfigurationConfigurator.RegisterConfigurationSettings()
                                      .FromAssemblies(Assembly.GetExecutingAssembly())
                                      .RegisterWithContainer(configurationSettings.Add)
+                                     .WithLogger(new ConsoleLogger())
                                      .AllowConfigurationEntriesThatDoNotHaveSettingsClasses(false)
                                      .WithCustomValueParsers(new PersonNameValueParser())
                                      .ExcludeSettingKeys("IgnoredSetting")

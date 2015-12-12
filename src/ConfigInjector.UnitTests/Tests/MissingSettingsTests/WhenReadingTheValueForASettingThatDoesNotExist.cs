@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ConfigInjector.Configuration;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Infrastructure;
+using ConfigInjector.Infrastructure.Logging;
 using ConfigInjector.Infrastructure.SettingsConventions;
+using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
 using ConfigInjector.Infrastructure.TypeProviders;
 using NUnit.Framework;
 
-namespace ConfigInjector.UnitTests
+namespace ConfigInjector.UnitTests.Tests.MissingSettingsTests
 {
     [TestFixture]
     internal class WhenReadingTheValueForASettingThatDoesNotExist : TestFor<SettingsRegistrationService>
