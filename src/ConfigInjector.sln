@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigInjector", "ConfigInjector\ConfigInjector.csproj", "{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WithAutofac", "Sample.WithAutofac\Sample.WithAutofac.csproj", "{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}"
@@ -17,7 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{47A9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{206E7B82-081E-4DE8-A37D-37AC18F4017F}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigInjector.UnitTests", "ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj", "{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}"
@@ -67,11 +70,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 		{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 		{79199283-6541-4370-BA9B-2BA1ADF818EF} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 		{967394B0-1AF3-48AF-9624-AE45E8E0D3DC} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 		{0285D32A-2222-4C48-B1D2-8070ED518450} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
-		{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 		{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B} = {47A972A5-489B-4F5F-BEAC-8C5F2202E313}
 	EndGlobalSection
 EndGlobal
