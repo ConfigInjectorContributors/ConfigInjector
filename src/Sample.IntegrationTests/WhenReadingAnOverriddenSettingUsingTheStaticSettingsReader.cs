@@ -1,24 +1,23 @@
-﻿using ConfigInjector.QuickAndDirty;
+﻿using ConfigInjector.Infrastructure.SettingsOverriders;
+using ConfigInjector.QuickAndDirty;
 using NUnit.Framework;
 using Sample.IntegrationTests.ConfigurationSettings;
 using Shouldly;
 
 namespace Sample.IntegrationTests
 {
-    [TestFixture]
-    public class WhenReadingASettingUsingTheStaticSettingsReader
+    public class WhenReadingAnOverriddenSettingUsingTheStaticSettingsReader
     {
-        private SimpleIntSetting _setting;
+        private readonly string _environmentVariableKey = EnvironmentVariableSettingsOverrider.DefaultPrefix + "SimpleIntSetting";
         private EnvironmentSettingsMutex _environmentSettingsMutex;
 
         [SetUp]
         public void SetUp()
         {
             _environmentSettingsMutex = new EnvironmentSettingsMutex();
+            _environmentSettingsMutex.SetEnvironmentVariable(_environmentVariableKey, "42");
 
             DefaultSettingsReader.SetStrategy(new DefaultStaticSettingReaderStrategy());
-
-            _setting = DefaultSettingsReader.Get<SimpleIntSetting>();
         }
 
         [TearDown]
@@ -28,14 +27,10 @@ namespace Sample.IntegrationTests
         }
 
         [Test]
-        public void NothingShouldGoBang()
+        public void TheValueShouldBeTheOverriddenOne()
         {
-        }
-
-        [Test]
-        public void TheAnswerShouldBeCorrect()
-        {
-            _setting.Value.ShouldBe(13);
+            var setting = DefaultSettingsReader.Get<SimpleIntSetting>();
+            setting.Value.ShouldBe(42);
         }
     }
 }

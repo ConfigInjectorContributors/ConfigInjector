@@ -16,8 +16,7 @@ namespace ConfigInjector.Infrastructure.TypeProviders
 
         public IEnumerable<Type> Get()
         {
-            return _assemblies
-                .SelectMany(a => a.GetExportedTypes());
+            return _assemblies.SelectMany(a => a.DefinedTypes);
         }
     }
 }
