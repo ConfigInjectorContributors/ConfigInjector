@@ -177,9 +177,9 @@ Each of your parsers should implement the IValueParser interface:
 
 ## How can I exclude certain settings that are causing an ExtraneousSettingsException?
 
-Some external packages add configuration that your application doesn't care about, such as Microsoft.AspNet.Mvc. These will cause an ExtraneousSettingsException because you have not created classes for them. **This is desired behaviour**. We want to discourage any sneaky references to ConfigurationManager.AppSettings[...] and an easy way to do that is to simply not permit any settings that we haven't wrapped in setting classes.
+Some external packages add configuration that your application doesn't care about, such as Microsoft.AspNet.Mvc. These will cause an ExtraneousSettingsException because you have not created classes for them. **This is desired behaviour**. We want to discourage any sneaky references to `ConfigurationManager.AppSettings[...]` and an easy way to do that is to simply not permit any settings that we haven't wrapped in setting classes.
 
-If you do not want to create classes for them since you will not be using them, while running up the Configurator, just call "ExcludeSettingKeys" passing in the string array of keys to ignore. E.g:
+If you do not want to create classes for them since you will not be using them, while running up the Configurator, just call `ExcludeSettingKeys`, passing in the string array of keys to ignore. E.g:
 
     ConfigurationConfigurator.RegisterConfigurationSettings()
                              .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
@@ -187,7 +187,7 @@ If you do not want to create classes for them since you will not be using them, 
                              .ExcludeSettingKeys(new[] { "ExampleSettingKey1", "webpages:Version", "webpages:Enabled" })
                              .DoYourThing();
 
-IF you genuinely don't want to assert that nobody is using silly/dangerous inline configuration settings, you can use the following:
+If you genuinely don't want to assert that nobody is using silly/dangerous inline configuration settings, you can use the following:
 
     ConfigurationConfigurator.RegisterConfigurationSettings()
                              .FromAssemblies(/* TODO: Provide a list of assemblies to scan for configuration settings here  */)
@@ -205,7 +205,9 @@ You can do this but I'd give some serious thought to whether it's a good idea in
 
 If you genuinely need access to settings before your container is wired up, go ahead. If you're using ConfigInjector as a settings service locator across your entire app, you're holding it wrong :)
 
-ConfigInjector will make an intelligent guess at defaults. It will, for instance, walk the call stack that invoked it and look for assemblies that contain settings and value parsers. If you have custom value parsers it will pick those up, too, provided that they're not off in a satellite assembly somewhere.
+One scenario in which you might like to use this pattern is when you'd like to configure your logger first, then pass that logger to ConfigInjector.
+
+ConfigInjector will make an intelligent guess at defaults. It will, for instance, scan the current app domain and look for assemblies that contain settings and value parsers. If you have custom value parsers it will pick those up, too, provided that they're not off in an as-yet-unloaded satellite assembly somewhere.
 
 If you need to globally change the default behaviour, create a class that implements IStaticSettingReaderStrategy:
 
@@ -244,6 +246,28 @@ and then override that configuration setting's value on the way out:
             set { base.Value = value; }
         }
     }
+
+## Overriding settings from environment variables (or anywhere else)
+
+### Why would I want to do this?
+
+Scenario: We want to be able to run integration tests locally and in multiple deployed environments.
+
+* Locally (and in our [web|app].config files) we use `localhost`.
+* We transform these using Octopus or our tool of choice when we deploy to the CI environment.
+* We run integration tests using settings from our `app.config` file in the CI environment, and currently they would fail because the test endpoints would still be configured to point at `localhost`.
+
+The issue is that the build agent and the deployment target will (should!) be different machines.
+
+If we allow overriding of settings (provided they're otherwise valid) we can then set environment variables on the build agent to tell it which servers to hit for integration tests.
+
+### How do I do it?
+
+Out of the box, ConfigInjector will load settings using `ConfigurationManager.AppSettings[...]` and then override any settings it finds there with any matching environment variable it finds.
+
+If we have an app setting named `Foo` in our `[web|app.config]` then ConfigInjector will look for an environment variable named `AppSetting_Foo` and override the setting if it finds one.
+
+We can now configure our build server to set different environment variables for different test environments.
 
 ## Package feeds
 
