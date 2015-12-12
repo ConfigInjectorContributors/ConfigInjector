@@ -117,7 +117,14 @@ namespace ConfigInjector.Infrastructure
 
         private void AssertThatNoAdditionalSettingsExist()
         {
-            var extraneousWebConfigEntries = _settingsReader.AllKeys
+            var settingsScanner = _settingsReader as IEnumeratingSettingsReader;
+            if (settingsScanner == null)
+            {
+                _logger.Log("WARNING: The current settings reader does not support the enumeration of settings keys. We can't confirm that there are no extraneous settings.");
+                return;
+            }
+
+            var extraneousWebConfigEntries = settingsScanner.AllKeys
                                                             .Where(s => !StronglyTypedSettingExistsFor(s))
                                                             .ToArray();
 

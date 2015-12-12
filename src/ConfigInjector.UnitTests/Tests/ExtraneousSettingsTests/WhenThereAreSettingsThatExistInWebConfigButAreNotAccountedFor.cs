@@ -33,7 +33,7 @@ namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
         {
         }
 
-        private class ExtraneousSettingsReader : ISettingsReader
+        private class ExtraneousSettingsReader : IEnumeratingSettingsReader
         {
             private readonly Dictionary<string, string> _settings = new[]
                                                                     {

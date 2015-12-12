@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ConfigInjector.Infrastructure.SettingsReaders
 {
-    public class AppSettingsReader : ISettingsReader
+    public class AppSettingsReader : IEnumeratingSettingsReader
     {
         private readonly string[] _excludedKeys;
         private readonly Lazy<Dictionary<string, string>> _settings;
