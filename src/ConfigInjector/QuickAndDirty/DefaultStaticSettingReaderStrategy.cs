@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using ConfigInjector.Configuration;
 using ConfigInjector.Infrastructure.ValueParsers;
 
@@ -8,25 +9,22 @@ namespace ConfigInjector.QuickAndDirty
 {
     public class DefaultStaticSettingReaderStrategy : IStaticSettingReaderStrategy
     {
-        private readonly Lazy<IList<IConfigurationSetting>> _settings;
-
-        public DefaultStaticSettingReaderStrategy()
-        {
-            _settings = new Lazy<IList<IConfigurationSetting>>(ReadSettings);
-        }
-
         public T Get<T>()
         {
-            return _settings.Value.OfType<T>().First();
+            var assembliesToScan = new Assembly[0]
+                .Union(AppDomain.CurrentDomain.GetAssemblies())
+                .Union(new[] {typeof (T).Assembly}).ToArray();
+
+            var settings = ReadSettings(assembliesToScan);
+
+            return settings.OfType<T>().First();
         }
 
-        private IList<IConfigurationSetting> ReadSettings()
+        private IEnumerable<IConfigurationSetting> ReadSettings(Assembly[] fromAssemblies)
         {
             var settings = new List<IConfigurationSetting>();
 
-            var assembliesInAppDomain = AppDomain.CurrentDomain.GetAssemblies();
-
-            var valueParsers = assembliesInAppDomain
+            var valueParsers = fromAssemblies
                 .SelectMany(a => a.DefinedTypes)
                 .Where(t => typeof (IValueParser).IsAssignableFrom(t))
                 .Where(IsInstantiable)
@@ -34,16 +32,16 @@ namespace ConfigInjector.QuickAndDirty
                 .ToArray();
 
             ConfigurationConfigurator.RegisterConfigurationSettings()
-                                     .FromAssemblies(assembliesInAppDomain)
+                                     .FromAssemblies(fromAssemblies)
                                      .RegisterWithContainer(settings.Add)
                                      .WithCustomValueParsers(valueParsers)
                                      .AllowConfigurationEntriesThatDoNotHaveSettingsClasses(true)
                                      .DoYourThing();
 
-            return settings;
+            return settings.ToArray();
         }
 
-        private bool IsInstantiable(Type type)
+        private static bool IsInstantiable(Type type)
         {
             return !type.IsInterface && !type.IsAbstract && !type.ContainsGenericParameters;
         }
