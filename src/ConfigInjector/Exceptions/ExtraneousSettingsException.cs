@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace ConfigInjector.Exceptions
 {
+    [Serializable]
     public class ExtraneousSettingsException : ConfigurationException
     {
         public ExtraneousSettingsException(IEnumerable<string> extraneousWebConfigEntries) : base(BuildMessage(extraneousWebConfigEntries))

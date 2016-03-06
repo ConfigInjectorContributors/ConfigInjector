@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ConfigInjector.Exceptions
 {
+    [Serializable]
     public class AmbiguousSettingException : ConfigurationException
     {
         public AmbiguousSettingException(Type settingType, Dictionary<string, string> candidateSettings)
