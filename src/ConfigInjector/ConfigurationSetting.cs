@@ -6,7 +6,7 @@ using ConfigInjector.Exceptions;
 
 namespace ConfigInjector
 {
-    [DebuggerDisplay("{GetType().Name,nq}: {Value,nq}")]
+    [DebuggerDisplay("{GetType().Name,nq}: {SanitizedValue,nq}")]
     public abstract class ConfigurationSetting<T> : IConfigurationSetting
     {
         private bool _initialized;
@@ -25,6 +25,9 @@ namespace ConfigInjector
                 _initialized = true;
             }
         }
+
+        public virtual T SanitizedValue => Value;
+        public virtual bool IsSensitive => false;
 
         protected virtual IEnumerable<string> ValidationErrors(T value)
         {

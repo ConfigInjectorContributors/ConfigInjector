@@ -269,6 +269,23 @@ If we have an app setting named `Foo` in our `[web|app.config]` then ConfigInjec
 
 We can now configure our build server to set different environment variables for different test environments.
 
+## What about sensitive values?
+
+You can mark configuration values as sensitive by overriding the `IsSensitive` property to return true.
+
+You can also override the `SanitizedValue` property to return a sanitized version of the value in case
+it's going to be written to a log file or other insecure storage.
+
+	public class FooApiKey: ConfigurationSetting<string>
+	{
+		public override IsSensitive => true;
+
+		public override SanitizedValue => "********";
+	}
+
+It's worth noting that *these properties do not change the behaviour of ConfigInjector*; they simply allow us to be a bit more
+judicious when we're dealing with these settings.
+
 ## Package feeds
 
 ### Stable versions
