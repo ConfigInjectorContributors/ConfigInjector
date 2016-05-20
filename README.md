@@ -278,9 +278,9 @@ it's going to be written to a log file or other insecure storage.
 
 	public class FooApiKey: ConfigurationSetting<string>
 	{
-		public override IsSensitive => true;
+		public override bool IsSensitive => true;
 
-		public override SanitizedValue => "********";
+		public override string SanitizedValue => "********";
 	}
 
 It's worth noting that *these properties do not change the behaviour of ConfigInjector*; they simply allow us to be a bit more
