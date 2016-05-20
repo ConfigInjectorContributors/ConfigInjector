@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ConfigInjector.Configuration;
+using ConfigInjector.Infrastructure.TypeProviders;
 using ConfigInjector.Infrastructure.ValueParsers;
 
 namespace ConfigInjector.QuickAndDirty
@@ -11,34 +12,37 @@ namespace ConfigInjector.QuickAndDirty
     {
         public T Get<T>()
         {
-            var assembliesToScan = new Assembly[0]
+            var assembliesToScanForValueParsers = new Assembly[0]
                 .Union(AppDomain.CurrentDomain.GetAssemblies())
-                .Union(new[] {typeof (T).Assembly}).ToArray();
+                .Union(new[] {typeof(T).Assembly}).ToArray();
 
-            var settings = ReadSettings(assembliesToScan);
+            var setting = ReadSetting<T>(assembliesToScanForValueParsers);
 
-            return settings.OfType<T>().First();
+            return setting;
         }
 
-        private IEnumerable<IConfigurationSetting> ReadSettings(Assembly[] fromAssemblies)
+        private static T ReadSetting<T>(Assembly[] assembliesToScanForValueParsers)
         {
             var settings = new List<IConfigurationSetting>();
 
-            var valueParsers = fromAssemblies
+            var valueParsers = assembliesToScanForValueParsers
                 .SelectMany(a => a.DefinedTypes)
-                .Where(t => typeof (IValueParser).IsAssignableFrom(t))
+                .Where(t => typeof(IValueParser).IsAssignableFrom(t))
                 .Where(IsInstantiable)
                 .Select(t => (IValueParser) Activator.CreateInstance(t))
                 .ToArray();
 
+            var singleSettingTypeProvider = new ExplicitTypeProvider(new[] {typeof(T)});
             ConfigurationConfigurator.RegisterConfigurationSettings()
-                                     .FromAssemblies(fromAssemblies)
+                                     .FromTypeProvider(singleSettingTypeProvider)
                                      .RegisterWithContainer(settings.Add)
                                      .WithCustomValueParsers(valueParsers)
                                      .AllowConfigurationEntriesThatDoNotHaveSettingsClasses(true)
                                      .DoYourThing();
 
-            return settings.ToArray();
+            return settings
+                .OfType<T>()
+                .Single();
         }
 
         private static bool IsInstantiable(Type type)
