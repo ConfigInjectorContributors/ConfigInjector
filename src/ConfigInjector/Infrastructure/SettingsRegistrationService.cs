@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Extensions;
 using ConfigInjector.Infrastructure.Logging;
@@ -92,16 +93,15 @@ namespace ConfigInjector.Infrastructure
             if (potentialMatchCount > 1) throw new AmbiguousSettingException(type, potentialMatches);
 
             var setting = potentialMatches.Single();
-            _logger.Log("Setting for type {0} loaded from settings provider (key: {1}; value: {2})", type, setting.Key, setting.Value);
-
+        
             string overriddenValue;
-            if (_settingsOverrider.TryFindOverrideFor(setting.Key, out overriddenValue))
-            {
-                _logger.Log("Setting for type {0} overridden (key: {1}; value: {2})", type, setting.Key, overriddenValue);
-                return ConstructSettingObject(type, overriddenValue);
-            }
+            bool isOverriding = _settingsOverrider.TryFindOverrideFor(setting.Key, out overriddenValue);
 
-            return ConstructSettingObject(type, setting.Value);
+            var settingObject = ConstructSettingObject(type, isOverriding ? overriddenValue : setting.Value);
+
+            DoInstrumentation(type, settingObject, setting.Key, setting.Value, overriddenValue);
+
+            return settingObject;
         }
 
         private IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)
@@ -148,6 +148,29 @@ namespace ConfigInjector.Infrastructure
             return possibleKeysForType
                 .Where(k => k == key)
                 .Any();
+        }
+
+        private void DoInstrumentation(Type settingType, IConfigurationSetting settingObject, string settingKey, string settingOriginalValue, string settingOverridenValue)
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendFormat("Setting for type {0} loaded from settings provider - key: {1}; ", settingType, settingKey);
+
+            if (settingObject.IsSensitive)
+            {
+                sb.AppendFormat("sanitized value: {0}", settingObject);
+
+                if (settingOverridenValue != null)
+                    sb.Append(" *overriden");
+            }
+            else
+            {
+                if (settingOverridenValue != null)
+                    sb.AppendFormat("original: {0}; override: {1}", settingOriginalValue, settingOverridenValue);
+                else
+                    sb.AppendFormat("value: {0}", settingOriginalValue);
+            }
+            _logger.Log(sb.ToString());
         }
     }
 }

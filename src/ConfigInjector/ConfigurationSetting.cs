@@ -51,7 +51,7 @@ namespace ConfigInjector
 
         public override string ToString()
         {
-            return "" + Value;
+            return "" + SanitizedValue;
         }
     }
 }
