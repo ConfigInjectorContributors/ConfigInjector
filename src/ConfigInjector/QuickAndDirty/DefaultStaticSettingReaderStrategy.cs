@@ -14,7 +14,9 @@ namespace ConfigInjector.QuickAndDirty
         {
             var assembliesToScanForValueParsers = new Assembly[0]
                 .Union(AppDomain.CurrentDomain.GetAssemblies())
-                .Union(new[] {typeof(T).Assembly}).ToArray();
+                .Union(new[] {typeof(T).Assembly})
+                .Where(a => !a.IsDynamic)
+                .ToArray();
 
             var setting = ReadSetting<T>(assembliesToScanForValueParsers);
 
