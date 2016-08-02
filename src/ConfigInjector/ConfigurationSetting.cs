@@ -26,7 +26,7 @@ namespace ConfigInjector
             }
         }
 
-        public virtual T SanitizedValue => Value;
+        public virtual string SanitizedValue => Value.ToString();
         public virtual bool IsSensitive => false;
 
         protected virtual IEnumerable<string> ValidationErrors(T value)

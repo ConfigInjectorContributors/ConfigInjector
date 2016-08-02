@@ -92,16 +92,18 @@ namespace ConfigInjector.Infrastructure
             if (potentialMatchCount > 1) throw new AmbiguousSettingException(type, potentialMatches);
 
             var setting = potentialMatches.Single();
-            _logger.Log("Setting for type {0} loaded from settings provider (key: {1}; value: {2})", type, setting.Key, setting.Value);
+            var candidateSettingObject = ConstructSettingObject(type, setting.Value);
+            _logger.Log("Setting for type {0} loaded from settings provider (key: {1}; value: {2})", type, setting.Key, candidateSettingObject.SanitizedValue);
 
             string overriddenValue;
             if (_settingsOverrider.TryFindOverrideFor(setting.Key, out overriddenValue))
             {
-                _logger.Log("Setting for type {0} overridden (key: {1}; value: {2})", type, setting.Key, overriddenValue);
-                return ConstructSettingObject(type, overriddenValue);
+                var overriddenSettingObject = ConstructSettingObject(type, overriddenValue);
+                _logger.Log("Setting for type {0} overridden (key: {1}; value: {2})", type, setting.Key, overriddenSettingObject.SanitizedValue);
+                return overriddenSettingObject;
             }
 
-            return ConstructSettingObject(type, setting.Value);
+            return candidateSettingObject;
         }
 
         private IConfigurationSetting ConstructSettingObject(Type type, string settingValueString)

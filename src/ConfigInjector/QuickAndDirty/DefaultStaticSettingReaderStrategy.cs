@@ -28,7 +28,7 @@ namespace ConfigInjector.QuickAndDirty
             var settings = new List<IConfigurationSetting>();
 
             var valueParsers = assembliesToScanForValueParsers
-                .SelectMany(a => a.DefinedTypes)
+                .SelectMany(GetDefinedTypes)
                 .Where(t => typeof(IValueParser).IsAssignableFrom(t))
                 .Where(IsInstantiable)
                 .Select(t => (IValueParser) Activator.CreateInstance(t))
@@ -45,6 +45,23 @@ namespace ConfigInjector.QuickAndDirty
             return settings
                 .OfType<T>()
                 .Single();
+        }
+
+        private static IEnumerable<TypeInfo> GetDefinedTypes(Assembly assembly)
+        {
+            try
+            {
+                return assembly.DefinedTypes;
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                DefaultSettingsReader.Logger.Log(ex, "Reflection type loader exception when extracting types from {AssemblyName}", assembly.FullName);
+                foreach (var loaderException in ex.LoaderExceptions)
+                {
+                    DefaultSettingsReader.Logger.Log(loaderException, "Loader exception: {Message}", loaderException.Message);
+                }
+                return Enumerable.Empty<TypeInfo>();
+            }
         }
 
         private static bool IsInstantiable(Type type)

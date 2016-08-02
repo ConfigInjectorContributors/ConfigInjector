@@ -8,5 +8,11 @@ namespace ConfigInjector.Infrastructure.Logging
         {
             Console.WriteLine(template, args);
         }
+
+        public void Log(Exception exception, string template, params object[] args)
+        {
+            Console.WriteLine(template, args);
+            Console.WriteLine(exception.ToString());
+        }
     }
 }
