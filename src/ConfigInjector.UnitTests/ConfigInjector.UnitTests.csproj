@@ -55,7 +55,6 @@
     <Compile Include="Tests\ObjectSettingsReaderTests\WhenReadingSettingsUsingAnObjectSettingsReader.cs" />
     <Compile Include="Tests\OverriddenSettingsTests\WhenOverridingASettingViaAnEnvironmentVariable.cs" />
     <Compile Include="Tests\OverriddenSettingsTests\WhenThereAreSettingsThatAreOverridden.cs" />
-    <Compile Include="Tests\AppSettingsReaderTests\WhenSpecifyingKeysToIgnore.cs" />
     <Compile Include="Tests\ValueConversionTests\WhenConvertingConfigurationSettingValues.cs" />
     <Compile Include="Tests\ValueConversionTests\WhenParsingASettingThatHasAnInvalidValue.cs" />
     <Compile Include="Tests\MissingSettingsTests\WhenReadingTheValueForASettingThatDoesNotExist.cs" />

@@ -10,10 +10,7 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
         private readonly Lazy<Dictionary<string, string>> _settings;
         private readonly Func<string, bool> _exclusionRule;
 
-        public AppSettingsReader(string[] excludedKeys) : this(excludedKeys.Contains)
-        {
-        }
-
+       
         public AppSettingsReader(Func<string, bool> exclusionRule)
         {
             _exclusionRule = exclusionRule;
