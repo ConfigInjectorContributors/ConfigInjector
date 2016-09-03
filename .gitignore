@@ -3,5 +3,5 @@
 **/bin/*
 **/obj/*
 src/packages/*
-*.metaproj
-*.tmp
+**/*.metaproj
+**/*.tmp
