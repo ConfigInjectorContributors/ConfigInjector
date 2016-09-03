@@ -8,6 +8,7 @@ using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
 using ConfigInjector.Infrastructure.TypeProviders;
 using NUnit.Framework;
+using Shouldly;
 
 namespace ConfigInjector.UnitTests.Tests.MissingSettingsTests
 {
@@ -16,7 +17,7 @@ namespace ConfigInjector.UnitTests.Tests.MissingSettingsTests
     {
         protected override SettingsRegistrationService Given()
         {
-            var assemblies = new[] {typeof (WhenReadingTheValueForASettingThatDoesNotExist).Assembly};
+            var assemblies = new[] {typeof(WhenReadingTheValueForASettingThatDoesNotExist).Assembly};
 
             var settingsReader = new EmptySettingsReader();
 
@@ -53,10 +54,9 @@ namespace ConfigInjector.UnitTests.Tests.MissingSettingsTests
         }
 
         [Test]
-        [ExpectedException(typeof (MissingSettingException))]
         public void AMissingSettingExceptionShouldBeThrown()
         {
-            Subject.GetConfigSettingFor(typeof (SomeMissingSetting));
+            Should.Throw<MissingSettingException>(() => Subject.GetConfigSettingFor(typeof(SomeMissingSetting)));
         }
     }
 }

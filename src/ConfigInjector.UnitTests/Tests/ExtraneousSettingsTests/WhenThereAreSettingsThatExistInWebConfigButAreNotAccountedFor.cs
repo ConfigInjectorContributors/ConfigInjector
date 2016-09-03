@@ -8,6 +8,7 @@ using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
 using ConfigInjector.UnitTests.Stubs;
 using NUnit.Framework;
+using Shouldly;
 
 namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
 {
@@ -59,10 +60,9 @@ namespace ConfigInjector.UnitTests.Tests.ExtraneousSettingsTests
         }
 
         [Test]
-        [ExpectedException(typeof (ExtraneousSettingsException))]
         public void AnExtraneousSettingsExceptionShouldBeThrown()
         {
-            Subject.RegisterConfigurationSettings();
+            Should.Throw<ExtraneousSettingsException>(() => Subject.RegisterConfigurationSettings());
         }
     }
 }

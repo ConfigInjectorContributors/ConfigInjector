@@ -8,6 +8,7 @@ using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
 using ConfigInjector.UnitTests.Stubs;
 using NUnit.Framework;
+using Shouldly;
 
 namespace ConfigInjector.UnitTests.Tests.AmbiguousMatchTests
 {
@@ -58,10 +59,9 @@ namespace ConfigInjector.UnitTests.Tests.AmbiguousMatchTests
         }
 
         [Test]
-        [ExpectedException(typeof (AmbiguousSettingException))]
         public void AnAmbiguousSettingExceptionShouldBeThrown()
         {
-            Subject.RegisterConfigurationSettings();
+            Should.Throw<AmbiguousSettingException>(() => Subject.RegisterConfigurationSettings());
         }
     }
 }
