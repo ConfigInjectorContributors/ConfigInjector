@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects" DefaultTargets="Build">
+  <PropertyGroup>
+    <VCTargetsPath>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\</VCTargetsPath>
+    <VCTargetsPath10>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\</VCTargetsPath10>
+    <VCTargetsPath11>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\</VCTargetsPath11>
+    <VCTargetsPath12>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\</VCTargetsPath12>
+    <VCTargetsPath14>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\</VCTargetsPath14>
+    <MSBuildToolsPath32>C:\Program Files (x86)\MSBuild\14.0\bin\</MSBuildToolsPath32>
+    <MSBuildToolsRoot>C:\Program Files (x86)\MSBuild\</MSBuildToolsRoot>
+    <MSBuildFrameworkToolsPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\</MSBuildFrameworkToolsPath>
+    <MSBuildFrameworkToolsPath32>C:\Windows\Microsoft.NET\Framework\v4.0.30319\</MSBuildFrameworkToolsPath32>
+    <MSBuildFrameworkToolsRoot>C:\Windows\Microsoft.NET\Framework\</MSBuildFrameworkToolsRoot>
+    <MSBuildRuntimeVersion>4.0.30319</MSBuildRuntimeVersion>
+    <FrameworkSDKRoot>C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\</FrameworkSDKRoot>
+    <SDK35ToolsPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\</SDK35ToolsPath>
+    <SDK40ToolsPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\</SDK40ToolsPath>
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+    <WindowsSDK80Path>C:\Program Files (x86)\Windows Kits\8.1\</WindowsSDK80Path>
+    <Platform>Any CPU</Platform>
+    <AspNetConfiguration>Release</AspNetConfiguration>
+    <SolutionDir>D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>ConfigInjector.sln</SolutionFileName>
+    <SolutionName>ConfigInjector</SolutionName>
+    <SolutionPath>D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.sln</SolutionPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|Any CPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Any CPU">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Release; Platform=AnyCPU</AdditionalProperties>
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="ValidateSolutionConfiguration">
+    <Error Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' != 'true')" Text="The specified solution configuration &quot;$(Configuration)|$(Platform)&quot; is invalid. Please specify a valid solution configuration using the Configuration and Platform properties (e.g. MSBuild.exe Solution.sln /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot;) or leave those properties blank to use the default solution configuration." Code="MSB4126" HelpKeyword="MSBuild.SolutionInvalidSolutionConfiguration" />
+    <Warning Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' == 'true')" Text="The specified solution configuration &quot;$(Configuration)|$(Platform)&quot; is invalid. Please specify a valid solution configuration using the Configuration and Platform properties (e.g. MSBuild.exe Solution.sln /p:Configuration=Debug /p:Platform=&quot;Any CPU&quot;) or leave those properties blank to use the default solution configuration." Code="MSB4126" HelpKeyword="MSBuild.SolutionInvalidSolutionConfiguration" />
+    <Message Condition="'$(CurrentSolutionConfigurationContents)' != ''" Text="Building solution configuration &quot;$(Configuration)|$(Platform)&quot;." />
+  </Target>
+  <Target Name="ValidateToolsVersions">
+    <Error Condition="'$(MSBuildToolsVersion)' == '2.0' and ('$(ProjectToolsVersion)' != '2.0' and '$(ProjectToolsVersion)' != '')" Text="The tools version &quot;$(MSBuildToolsVersion)&quot; of the solution does not support building projects with a different tools version." Code="MSB4149" HelpKeyword="MSBuild.SolutionToolsVersionDoesNotSupportProjectToolsVersion" />
+  </Target>
+  <Target Name="ValidateProjects" />
+  <Target Name="GetSolutionConfigurationContents" Outputs="$(SolutionConfigurationContents)" />
+  <Target Name="Build" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="@(ProjectReference)" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectReference-&gt;Reverse())" Targets="Clean" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="Rebuild" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Publish">
+    <MSBuild Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+  </Target>
+  <Target Name="ConfigInjector" Outputs="@(ConfigInjectorBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="ConfigInjectorBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="ConfigInjector:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="ConfigInjector:Rebuild" Outputs="@(ConfigInjectorBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="ConfigInjectorBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="ConfigInjector:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_WithAutofac" Outputs="@(Samples_Sample_WithAutofacBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_WithAutofacBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_WithAutofac:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_WithAutofac:Rebuild" Outputs="@(Samples_Sample_WithAutofacBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_WithAutofacBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_WithAutofac:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_UnitTests" Outputs="@(Samples_Sample_UnitTestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_UnitTestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_UnitTests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_UnitTests:Rebuild" Outputs="@(Samples_Sample_UnitTestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_UnitTestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_UnitTests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample" Outputs="@(Samples_SampleBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_SampleBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample:Rebuild" Outputs="@(Samples_SampleBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_SampleBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_WithWindsor" Outputs="@(Samples_Sample_WithWindsorBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_WithWindsorBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_WithWindsor:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_WithWindsor:Rebuild" Outputs="@(Samples_Sample_WithWindsorBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_WithWindsorBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_WithWindsor:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_WithNinject" Outputs="@(Samples_Sample_WithNinjectBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_WithNinjectBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_WithNinject:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_WithNinject:Rebuild" Outputs="@(Samples_Sample_WithNinjectBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_WithNinjectBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_WithNinject:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="ConfigInjector_UnitTests" Outputs="@(ConfigInjector_UnitTestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="ConfigInjector_UnitTestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="ConfigInjector_UnitTests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="ConfigInjector_UnitTests:Rebuild" Outputs="@(ConfigInjector_UnitTestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="ConfigInjector_UnitTestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="ConfigInjector_UnitTests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_IntegrationTests" Outputs="@(Samples_Sample_IntegrationTestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_IntegrationTestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_IntegrationTests:Clean">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Samples\Sample_IntegrationTests:Rebuild" Outputs="@(Samples_Sample_IntegrationTestsBuildOutput)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="Samples_Sample_IntegrationTestsBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Samples\Sample_IntegrationTests:Publish">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+</Project>
