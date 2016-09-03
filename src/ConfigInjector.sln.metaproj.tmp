@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <Import Project="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\before.ConfigInjector.sln.targets" Condition="exists('D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\before.ConfigInjector.sln.targets')" />
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>Any CPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>ConfigInjector.sln</SolutionFileName>
+    <SolutionName>ConfigInjector</SolutionName>
+    <SolutionPath>D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.sln</SolutionPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0')">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and !('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0' or '$(MSBuildToolsVersion)' == '2.0')">v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|Any CPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Any CPU">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{9C2819AE-BA24-4A8B-9091-BDD3D53AC3E0}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector\ConfigInjector.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{8AFCB5B0-68CC-4F72-9D2D-BA511011C1FC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithAutofac\Sample.WithAutofac.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{51CD02CA-71E4-48E4-A2DD-1D8F2AA71DC6}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.UnitTests\Sample.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{79199283-6541-4370-BA9B-2BA1ADF818EF}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample\Sample.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{967394B0-1AF3-48AF-9624-AE45E8E0D3DC}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithWindsor\Sample.WithWindsor.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0285D32A-2222-4C48-B1D2-8070ED518450}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.WithNinject\Sample.WithNinject.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3343E4BD-01F2-4A04-9B5D-B3A2F973A803}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\ConfigInjector.UnitTests\ConfigInjector.UnitTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{F0927DDA-1CC4-47DA-AC84-6E2107B81D4B}" AbsolutePath="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\Sample.IntegrationTests\Sample.IntegrationTests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <Import Project="D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\after.ConfigInjector.sln.targets" Condition="exists('D:\TeamCity\buildAgent2\work\d449719d28d53dba\src\after.ConfigInjector.sln.targets')" />
+  <Target Name="Build" />
+  <Target Name="Rebuild" />
+  <Target Name="Clean" />
+  <Target Name="Publish" />
+</Project>
