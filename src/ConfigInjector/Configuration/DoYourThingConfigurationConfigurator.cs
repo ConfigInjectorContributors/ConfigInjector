@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Infrastructure;
 using ConfigInjector.Infrastructure.Logging;
@@ -14,12 +15,12 @@ namespace ConfigInjector.Configuration
     public class DoYourThingConfigurationConfigurator
     {
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
-        private readonly List<string> _excludedKeys = new List<string>();
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
-
+        private readonly List<string> _excludedKeys = new List<string>();
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
         private readonly ITypeProvider _typeProvider;
 
+        private Func<string, bool> _exclusionRule = k => false;
         private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
         private IConfigInjectorLogger _logger = new NullLogger();
         private ISettingsOverrider _settingsOverrider = new EnvironmentVariableSettingsOverrider();
@@ -61,6 +62,13 @@ namespace ConfigInjector.Configuration
             return this;
         }
 
+        public DoYourThingConfigurationConfigurator ExcludeSettings(Func<string, bool> exclusionRule)
+        {
+            _exclusionRule = exclusionRule;
+            return this;
+        }
+
+
         /// <summary>
         /// This allows you to substitute your own application settings reader. A good use case for this is in having a unit/convention
         /// test suite that opens your application's app.config file (rather than the test project's one) and asserts that all configuration
@@ -89,7 +97,11 @@ namespace ConfigInjector.Configuration
             if (_typeProvider == null) throw new ConfigurationException("You must specify a type provider used to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
 
-            var settingsReader = _settingsReader ?? new AppSettingsReader(_excludedKeys.ToArray());
+            Func<string, bool> namedKeyExclusions = k => _excludedKeys.Contains(k);
+            Func<string, bool> exclusions = k => namedKeyExclusions.Invoke(k) || _exclusionRule.Invoke(k);
+            
+
+            var settingsReader = _settingsReader ?? new AppSettingsReader(exclusions);
             var settingsOverrider = _settingsOverrider ?? new NoOpSettingsOverrider();
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 

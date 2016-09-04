@@ -7,13 +7,15 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
 {
     public class AppSettingsReader : IEnumeratingSettingsReader
     {
-        private readonly string[] _excludedKeys;
         private readonly Lazy<Dictionary<string, string>> _settings;
+        private readonly Func<string, bool> _exclusionRule;
 
-        public AppSettingsReader(string[] excludedKeys)
+       
+        public AppSettingsReader(Func<string, bool> exclusionRule)
         {
-            _excludedKeys = excludedKeys;
+            _exclusionRule = exclusionRule;
             _settings = new Lazy<Dictionary<string, string>>(ReadSettingsFromConfigFile);
+
         }
 
         private IDictionary<string, string> Settings
@@ -37,7 +39,7 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
             var appSettings = ConfigurationManager.AppSettings;
 
             return appSettings.AllKeys
-                              .Where(k => !_excludedKeys.Contains(k))
+                              .Where(k => !_exclusionRule(k))
                               .Select(k => new KeyValuePair<string, string>(k, appSettings[k]))
                               .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }

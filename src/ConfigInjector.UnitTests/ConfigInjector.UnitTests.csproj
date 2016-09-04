@@ -52,6 +52,7 @@
     <Compile Include="Stubs\StubTypeProvider.cs" />
     <Compile Include="Stubs\StubSettingsOverrider.cs" />
     <Compile Include="Stubs\StubSettingsReader.cs" />
+    <Compile Include="Tests\AppSettingsReaderTests\WhenSpecifyingKeysToIgnoreViaARuleset.cs" />
     <Compile Include="Tests\ObjectSettingsReaderTests\WhenReadingNestedSettingsFromAnObjectSettingsReader.cs" />
     <Compile Include="Tests\ObjectSettingsReaderTests\WhenReadingSettingsUsingAnObjectSettingsReader.cs" />
     <Compile Include="Tests\OverriddenSettingsTests\WhenOverridingASettingViaAnEnvironmentVariable.cs" />
@@ -61,6 +62,10 @@
     <Compile Include="Tests\MissingSettingsTests\WhenReadingTheValueForASettingThatDoesNotExist.cs" />
     <Compile Include="Tests\ExtraneousSettingsTests\WhenThereAreSettingsThatExistInWebConfigButAreNotAccountedFor.cs" />
     <Compile Include="Tests\AmbiguousMatchTests\WhenThereAreSettingsThatHaveAmbiguousMatchesInWebConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConfigInjector\ConfigInjector.csproj">
