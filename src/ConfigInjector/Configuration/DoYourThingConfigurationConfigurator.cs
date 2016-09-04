@@ -16,11 +16,10 @@ namespace ConfigInjector.Configuration
     {
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
-        private readonly List<string> _excludedKeys = new List<string>();
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
         private readonly ITypeProvider _typeProvider;
 
-        private Func<string, bool> _exclusionRule = k => false;
+        private readonly List<Func<string, bool>> _exclusionRules = new List<Func<string, bool>>();
         private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
         private IConfigInjectorLogger _logger = new NullLogger();
         private ISettingsOverrider _settingsOverrider = new EnvironmentVariableSettingsOverrider();
@@ -58,13 +57,16 @@ namespace ConfigInjector.Configuration
 
         public DoYourThingConfigurationConfigurator ExcludeSettingKeys(params string[] settingKeys)
         {
-            _excludedKeys.AddRange(settingKeys);
+            var rules = settingKeys
+                .Select(settingKey => (Func<string, bool>)(k => settingKey == k))
+                .ToArray();
+            _exclusionRules.AddRange(rules);
             return this;
         }
 
         public DoYourThingConfigurationConfigurator ExcludeSettings(Func<string, bool> exclusionRule)
         {
-            _exclusionRule = exclusionRule;
+            _exclusionRules.Add(exclusionRule);
             return this;
         }
 
@@ -97,11 +99,7 @@ namespace ConfigInjector.Configuration
             if (_typeProvider == null) throw new ConfigurationException("You must specify a type provider used to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
 
-            Func<string, bool> namedKeyExclusions = k => _excludedKeys.Contains(k);
-            Func<string, bool> exclusions = k => namedKeyExclusions.Invoke(k) || _exclusionRule.Invoke(k);
-            
-
-            var settingsReader = _settingsReader ?? new AppSettingsReader(exclusions);
+            var settingsReader = _settingsReader ?? new AppSettingsReader(_exclusionRules.ToArray());
             var settingsOverrider = _settingsOverrider ?? new NoOpSettingsOverrider();
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConfigInjector.Infrastructure.SettingsReaders;
 using NUnit.Framework;
 using Shouldly;
@@ -11,7 +12,8 @@ namespace ConfigInjector.UnitTests.Tests.AppSettingsReaderTests
 
         protected override AppSettingsReader Given()
         {
-            return new AppSettingsReader(k => k.StartsWith("ba"));
+            var rule = (Func<string, bool>) (k => k.StartsWith("ba"));
+            return new AppSettingsReader(new[] {rule});
         }
 
         protected override void When()
@@ -22,7 +24,7 @@ namespace ConfigInjector.UnitTests.Tests.AppSettingsReaderTests
         [Test]
         public void ItShouldIgnoreKeysThatMatchTheRule()
         {
-            _keys.ShouldBe(new []{"foo"});
+            _keys.ShouldBe(new[] {"foo"});
         }
     }
 }
