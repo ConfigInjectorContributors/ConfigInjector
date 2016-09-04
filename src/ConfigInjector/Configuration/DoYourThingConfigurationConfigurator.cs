@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Infrastructure;
 using ConfigInjector.Infrastructure.Logging;
@@ -14,12 +15,11 @@ namespace ConfigInjector.Configuration
     public class DoYourThingConfigurationConfigurator
     {
         private readonly List<IValueParser> _customValueParsers = new List<IValueParser>();
-        private readonly List<string> _excludedKeys = new List<string>();
         private readonly Action<IConfigurationSetting> _registerAsSingleton;
-
         private readonly List<ISettingKeyConvention> _settingKeyConventions = new List<ISettingKeyConvention>();
         private readonly ITypeProvider _typeProvider;
 
+        private readonly List<Func<string, bool>> _exclusionRules = new List<Func<string, bool>>();
         private bool _allowConfigurationEntriesThatDoNotHaveSettingsClasses;
         private IConfigInjectorLogger _logger = new NullLogger();
         private ISettingsOverrider _settingsOverrider = new EnvironmentVariableSettingsOverrider();
@@ -57,9 +57,19 @@ namespace ConfigInjector.Configuration
 
         public DoYourThingConfigurationConfigurator ExcludeSettingKeys(params string[] settingKeys)
         {
-            _excludedKeys.AddRange(settingKeys);
+            var rules = settingKeys
+                .Select(settingKey => (Func<string, bool>)(k => settingKey == k))
+                .ToArray();
+            _exclusionRules.AddRange(rules);
             return this;
         }
+
+        public DoYourThingConfigurationConfigurator ExcludeSettings(Func<string, bool> exclusionRule)
+        {
+            _exclusionRules.Add(exclusionRule);
+            return this;
+        }
+
 
         /// <summary>
         /// This allows you to substitute your own application settings reader. A good use case for this is in having a unit/convention
@@ -89,7 +99,7 @@ namespace ConfigInjector.Configuration
             if (_typeProvider == null) throw new ConfigurationException("You must specify a type provider used to scan for configuration settings.");
             if (_registerAsSingleton == null) throw new ConfigurationException("You must provide a registration action.");
 
-            var settingsReader = _settingsReader ?? new AppSettingsReader(_excludedKeys.ToArray());
+            var settingsReader = _settingsReader ?? new AppSettingsReader(_exclusionRules.ToArray());
             var settingsOverrider = _settingsOverrider ?? new NoOpSettingsOverrider();
             var settingValueConverter = new SettingValueConverter(_customValueParsers.ToArray());
 

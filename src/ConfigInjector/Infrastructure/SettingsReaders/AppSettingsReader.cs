@@ -7,18 +7,16 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
 {
     public class AppSettingsReader : IEnumeratingSettingsReader
     {
-        private readonly string[] _excludedKeys;
+        private readonly Func<string, bool>[] _exclusionRules;
         private readonly Lazy<Dictionary<string, string>> _settings;
+        private IDictionary<string, string> Settings => _settings.Value;
 
-        public AppSettingsReader(string[] excludedKeys)
+        public IEnumerable<string> AllKeys => Settings.Keys;
+
+        public AppSettingsReader(Func<string, bool>[] exclusionRules)
         {
-            _excludedKeys = excludedKeys;
+            _exclusionRules = exclusionRules;
             _settings = new Lazy<Dictionary<string, string>>(ReadSettingsFromConfigFile);
-        }
-
-        private IDictionary<string, string> Settings
-        {
-            get { return _settings.Value; }
         }
 
         public string ReadValue(string key)
@@ -27,19 +25,19 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
             return Settings.TryGetValue(key, out value) ? value : null;
         }
 
-        public IEnumerable<string> AllKeys
-        {
-            get { return Settings.Keys; }
-        }
-
         private Dictionary<string, string> ReadSettingsFromConfigFile()
         {
             var appSettings = ConfigurationManager.AppSettings;
 
             return appSettings.AllKeys
-                              .Where(k => !_excludedKeys.Contains(k))
+                              .Where(k => !IsExcludedByRules(k))
                               .Select(k => new KeyValuePair<string, string>(k, appSettings[k]))
                               .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }
+
+        private bool IsExcludedByRules(string settingsKey)
+        {
+            return _exclusionRules.Any(r => r(settingsKey));
         }
     }
 }
