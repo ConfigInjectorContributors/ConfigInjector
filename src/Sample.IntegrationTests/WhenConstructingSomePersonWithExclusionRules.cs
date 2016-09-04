@@ -27,7 +27,7 @@ namespace Sample.IntegrationTests
                                      .WithLogger(new ConsoleLogger())
                                      .AllowConfigurationEntriesThatDoNotHaveSettingsClasses(false)
                                      .WithCustomValueParsers(new PersonNameValueParser())
-                                     .ExcludeSettings(k => k.StartsWith("Ignore"))
+                                     .ExcludeSettingKeys(k => k.StartsWith("Ignore"))
                                      .DoYourThing();
 
             _somePersonSetting = configurationSettings.OfType<SomePersonSetting>().Single();

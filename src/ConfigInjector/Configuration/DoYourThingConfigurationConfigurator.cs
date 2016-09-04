@@ -64,7 +64,7 @@ namespace ConfigInjector.Configuration
             return this;
         }
 
-        public DoYourThingConfigurationConfigurator ExcludeSettings(Func<string, bool> exclusionRule)
+        public DoYourThingConfigurationConfigurator ExcludeSettingKeys(Func<string, bool> exclusionRule)
         {
             _exclusionRules.Add(exclusionRule);
             return this;
