@@ -93,13 +93,13 @@ namespace ConfigInjector.Infrastructure
 
             var setting = potentialMatches.Single();
             var candidateSettingObject = ConstructSettingObject(type, setting.Value);
-            _logger.Log("Setting for type {0} loaded from settings provider (key: {1}; value: {2})", type, setting.Key, candidateSettingObject.SanitizedValue);
+            _logger.Log("Setting for type {0} loaded from settings provider (key: {1}; value: {2})", type.Name, setting.Key, candidateSettingObject.SanitizedValue);
 
             string overriddenValue;
             if (_settingsOverrider.TryFindOverrideFor(setting.Key, out overriddenValue))
             {
                 var overriddenSettingObject = ConstructSettingObject(type, overriddenValue);
-                _logger.Log("Setting for type {0} overridden (key: {1}; value: {2})", type, setting.Key, overriddenSettingObject.SanitizedValue);
+                _logger.Log("Setting for type {0} overridden (key: {1}; value: {2})", type.Name, setting.Key, overriddenSettingObject.SanitizedValue);
                 return overriddenSettingObject;
             }
 
