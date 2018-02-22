@@ -1,5 +1,7 @@
 # ConfigInjector
 
+![Build Status](https://ci.appveyor.com/api/projects/status/l6sqj2tvur6e04c6/branch/master?svg=true)
+
 ## How application settings *should* look:
 
 Here's a class that needs some configuration settings:
@@ -299,3 +301,11 @@ Stable versions of the packages are available via nuget.org.
 
 Be careful! The pre-release feeds may contain builds from feature branches and
 pull requests as well as from the master branch.
+
+## Contributing
+
+The official repository for ConfigInjector is [https://github.com/ConfigInjector/ConfigInjector](https://github.com/ConfigInjector/ConfigInjector).
+
+Public build information is available at [https://ci.appveyor.com/project/ConfigInjector/configinjector](https://ci.appveyor.com/project/ConfigInjector/configinjector).
+
+![Build Status](https://ci.appveyor.com/api/projects/status/l6sqj2tvur6e04c6/branch/master?svg=true)
