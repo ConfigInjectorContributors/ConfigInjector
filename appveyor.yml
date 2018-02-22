@@ -1,0 +1,38 @@
+version: 2.3.{build}.0
+configuration: Release
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+nuget:
+  disable_publish_on_pr: true
+before_build:
+- cmd: >-
+    cd src
+
+    nuget restore
+
+    cd ..
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  parallel: true
+  verbosity: minimal
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/config-injector/api/v2/package
+  api_key:
+    secure: IvGko7aRx36m46T8v3gbLfpqicRNCjp/ihlt/pNKezJDra9mtGnIsmfJYt1fAqlZ
+  symbol_server: https://www.myget.org/F/config-injector/symbols/api/v2/package
+  on:
+    branch: master
