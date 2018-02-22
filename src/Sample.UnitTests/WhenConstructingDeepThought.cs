@@ -1,10 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Sample.Configuration;
 
 namespace Sample.UnitTests
 {
-    [TestClass]
     [TestFixture]
     public class WhenConstructingDeepThought
     {
@@ -13,26 +11,23 @@ namespace Sample.UnitTests
 
         private DeepThought _deepThought;
 
-        [TestInitialize]
         [SetUp]
         public void SetUp()
         {
-            _deepThought = new DeepThought(new QuestionConfigurationSetting { Value = _theQuestion },
-                                           new AnswerConfigurationSetting { Value = _theAnswer });
+            _deepThought = new DeepThought(new QuestionConfigurationSetting {Value = _theQuestion},
+                                           new AnswerConfigurationSetting {Value = _theAnswer});
         }
 
-        [TestMethod]
         [Test]
         public void TheQuestionShouldBeCorrect()
         {
-            NUnit.Framework.Assert.AreEqual(_theQuestion, _deepThought.Question);
+            Assert.AreEqual(_theQuestion, _deepThought.Question);
         }
 
-        [TestMethod]
         [Test]
         public void TheAnswerShouldBeCorrect()
         {
-            NUnit.Framework.Assert.AreEqual(_theAnswer, _deepThought.Answer);
+            Assert.AreEqual(_theAnswer, _deepThought.Answer);
         }
     }
 }
