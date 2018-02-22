@@ -288,11 +288,7 @@ it's going to be written to a log file or other insecure storage.
 It's worth noting that *these properties do not change the behaviour of ConfigInjector*; they simply allow us to be a bit more
 judicious when we're dealing with these settings.
 
-## Builds and package feeds
-
-Public build information is available at [https://ci.appveyor.com/project/ConfigInjector/configinjector](https://ci.appveyor.com/project/ConfigInjector/configinjector).
-
-![Build Status](https://ci.appveyor.com/api/projects/status/l6sqj2tvur6e04c6/branch/master?svg=true)
+## Package feeds
 
 ### Stable versions
 
@@ -305,3 +301,11 @@ Stable versions of the packages are available via nuget.org.
 
 Be careful! The pre-release feeds may contain builds from feature branches and
 pull requests as well as from the master branch.
+
+## Contributing
+
+The official repository for ConfigInjector is [https://github.com/ConfigInjector/ConfigInjector](https://github.com/ConfigInjector/ConfigInjector).
+
+Public build information is available at [https://ci.appveyor.com/project/ConfigInjector/configinjector](https://ci.appveyor.com/project/ConfigInjector/configinjector).
+
+![Build Status](https://ci.appveyor.com/api/projects/status/l6sqj2tvur6e04c6/branch/master?svg=true)
