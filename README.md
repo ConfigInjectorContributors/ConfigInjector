@@ -1,5 +1,7 @@
 # ConfigInjector
 
+![Build Status](https://ci.appveyor.com/api/projects/status/l6sqj2tvur6e04c6/branch/master?svg=true)
+
 ## How application settings *should* look:
 
 Here's a class that needs some configuration settings:
