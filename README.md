@@ -288,7 +288,11 @@ it's going to be written to a log file or other insecure storage.
 It's worth noting that *these properties do not change the behaviour of ConfigInjector*; they simply allow us to be a bit more
 judicious when we're dealing with these settings.
 
-## Package feeds
+## Builds and package feeds
+
+Public build information is available at [https://ci.appveyor.com/project/ConfigInjector/configinjector](https://ci.appveyor.com/project/ConfigInjector/configinjector).
+
+![Build Status](https://ci.appveyor.com/api/projects/status/l6sqj2tvur6e04c6/branch/master?svg=true)
 
 ### Stable versions
 
