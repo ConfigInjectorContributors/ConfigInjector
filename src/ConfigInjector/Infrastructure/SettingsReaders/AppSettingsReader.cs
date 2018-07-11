@@ -27,8 +27,11 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
 
         private Dictionary<string, string> ReadSettingsFromConfigFile()
         {
+#if ( NET452 )
             var appSettings = ConfigurationManager.AppSettings;
-
+#else
+            var appSettings = System.Configuration.ConfigurationManager.AppSettings;
+#endif
             return appSettings.AllKeys
                               .Where(k => !IsExcludedByRules(k))
                               .Select(k => new KeyValuePair<string, string>(k, appSettings[k]))
