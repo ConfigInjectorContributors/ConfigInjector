@@ -17,14 +17,14 @@ namespace ConfigInjector.Infrastructure.ValueParsers
 
         public object Parse(Type settingValueType, string settingValueString)
         {
-            var parseMethod = settingValueType.GetMethod("Parse", new[] { typeof(string) });
-            var result = parseMethod.Invoke(null, new object[] { settingValueString });
+            var parseMethod = settingValueType.GetMethod("Parse", new[] {typeof(string)});
+            var result = parseMethod.Invoke(null, new object[] {settingValueString});
             return result;
         }
 
         private static MethodInfo GetParseMethod(Type settingValueType)
         {
-            var parseMethod = settingValueType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(string) }, null);
+            var parseMethod = settingValueType.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static, null, new[] {typeof(string)}, null);
             return parseMethod;
         }
     }

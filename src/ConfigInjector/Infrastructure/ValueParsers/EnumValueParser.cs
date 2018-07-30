@@ -11,7 +11,7 @@ namespace ConfigInjector.Infrastructure.ValueParsers
 
         public bool CanParse(Type settingValueType)
         {
-            return settingValueType.BaseType == typeof (Enum);
+            return settingValueType.BaseType == typeof(Enum);
         }
 
         public object Parse(Type settingValueType, string settingValueString)

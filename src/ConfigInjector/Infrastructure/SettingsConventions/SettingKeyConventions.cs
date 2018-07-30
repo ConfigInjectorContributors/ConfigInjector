@@ -11,13 +11,13 @@ namespace ConfigInjector.Infrastructure.SettingsConventions
         {
             get
             {
-                var builtInConventions = typeof (SettingKeyConventions).Assembly
-                    .DefinedTypes
-                    .Where(t => t.IsAssignableTo<ISettingKeyConvention>())
-                    .Where(t => t.IsInstantiable())
-                    .Select(Activator.CreateInstance)
-                    .Cast<ISettingKeyConvention>()
-                    .ToArray();
+                var builtInConventions = typeof(SettingKeyConventions).Assembly
+                                                                      .DefinedTypes
+                                                                      .Where(t => t.IsAssignableTo<ISettingKeyConvention>())
+                                                                      .Where(t => t.IsInstantiable())
+                                                                      .Select(Activator.CreateInstance)
+                                                                      .Cast<ISettingKeyConvention>()
+                                                                      .ToArray();
 
                 return builtInConventions;
             }

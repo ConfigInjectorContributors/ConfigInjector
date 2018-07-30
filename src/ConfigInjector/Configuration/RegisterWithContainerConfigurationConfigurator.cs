@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using ConfigInjector.Infrastructure.TypeProviders;
 
 namespace ConfigInjector.Configuration

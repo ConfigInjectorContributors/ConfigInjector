@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using ConfigInjector.Exceptions;
 using ConfigInjector.Extensions;
 using ConfigInjector.Infrastructure.Logging;
@@ -8,7 +9,7 @@ using ConfigInjector.Infrastructure.SettingsConventions;
 using ConfigInjector.Infrastructure.SettingsOverriders;
 using ConfigInjector.Infrastructure.SettingsReaders;
 using ConfigInjector.Infrastructure.TypeProviders;
-using System.Runtime.CompilerServices;
+
 [assembly: InternalsVisibleTo("ConfigInjector.UnitTests")]
 
 namespace ConfigInjector.Infrastructure
@@ -85,9 +86,9 @@ namespace ConfigInjector.Infrastructure
         internal IConfigurationSetting GetConfigSettingFor(Type type)
         {
             var potentialMatches = GetPossibleKeysFor(type)
-                .ToDictionary(k => k, k => _settingsReader.ReadValue(k))
-                .Where(kvp => kvp.Value != null)
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                                   .ToDictionary(k => k, k => _settingsReader.ReadValue(k))
+                                   .Where(kvp => kvp.Value != null)
+                                   .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
             var potentialMatchCount = potentialMatches.Count();
             if (potentialMatchCount == 0) throw new MissingSettingException(type);
@@ -140,9 +141,9 @@ namespace ConfigInjector.Infrastructure
         private IEnumerable<string> GetPossibleKeysFor(Type type)
         {
             return _settingKeyConventions
-                .Select(sc => sc.KeyFor(type))
-                .Where(k => k != null)
-                .Distinct();
+                   .Select(sc => sc.KeyFor(type))
+                   .Where(k => k != null)
+                   .Distinct();
         }
 
         private bool StronglyTypedSettingExistsFor(string key)
@@ -150,8 +151,8 @@ namespace ConfigInjector.Infrastructure
             var possibleKeysForType = _stronglyTypedSettings.SelectMany(t => GetPossibleKeysFor(t.GetType()))
                                                             .ToArray();
             return possibleKeysForType
-                .Where(k => k == key)
-                .Any();
+                   .Where(k => k == key)
+                   .Any();
         }
     }
 }

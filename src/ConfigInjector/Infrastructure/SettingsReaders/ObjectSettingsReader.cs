@@ -30,7 +30,7 @@ namespace ConfigInjector.Infrastructure.SettingsReaders
                 if (!prop.CanRead) continue;
                 var value = prop.GetValue(o);
                 if (value == null) continue;
-                if (prop.PropertyType.IsValueType || prop.PropertyType == typeof (string))
+                if (prop.PropertyType.IsValueType || prop.PropertyType == typeof(string))
                 {
                     yield return new KeyValuePair<string, object>(prefix + prop.Name, value);
                 }

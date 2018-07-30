@@ -13,10 +13,10 @@ namespace ConfigInjector.QuickAndDirty
         public T Get<T>()
         {
             var assembliesToScanForValueParsers = new Assembly[0]
-                .Union(AppDomain.CurrentDomain.GetAssemblies())
-                .Union(new[] {typeof(T).Assembly})
-                .Where(a => !a.IsDynamic)
-                .ToArray();
+                                                  .Union(AppDomain.CurrentDomain.GetAssemblies())
+                                                  .Union(new[] {typeof(T).Assembly})
+                                                  .Where(a => !a.IsDynamic)
+                                                  .ToArray();
 
             var setting = ReadSetting<T>(assembliesToScanForValueParsers);
 
@@ -28,11 +28,11 @@ namespace ConfigInjector.QuickAndDirty
             var settings = new List<IConfigurationSetting>();
 
             var valueParsers = assembliesToScanForValueParsers
-                .SelectMany(GetDefinedTypes)
-                .Where(t => typeof(IValueParser).IsAssignableFrom(t))
-                .Where(IsInstantiable)
-                .Select(t => (IValueParser) Activator.CreateInstance(t))
-                .ToArray();
+                               .SelectMany(GetDefinedTypes)
+                               .Where(t => typeof(IValueParser).IsAssignableFrom(t))
+                               .Where(IsInstantiable)
+                               .Select(t => (IValueParser) Activator.CreateInstance(t))
+                               .ToArray();
 
             var singleSettingTypeProvider = new ExplicitTypeProvider(new[] {typeof(T)});
             ConfigurationConfigurator.RegisterConfigurationSettings()
@@ -43,8 +43,8 @@ namespace ConfigInjector.QuickAndDirty
                                      .DoYourThing();
 
             return settings
-                .OfType<T>()
-                .Single();
+                   .OfType<T>()
+                   .Single();
         }
 
         private static IEnumerable<TypeInfo> GetDefinedTypes(Assembly assembly)
@@ -60,6 +60,7 @@ namespace ConfigInjector.QuickAndDirty
                 {
                     DefaultSettingsReader.Logger.Log(loaderException, "Loader exception: {Message}", loaderException.Message);
                 }
+
                 return Enumerable.Empty<TypeInfo>();
             }
         }

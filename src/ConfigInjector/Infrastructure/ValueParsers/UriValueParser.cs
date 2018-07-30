@@ -11,7 +11,7 @@ namespace ConfigInjector.Infrastructure.ValueParsers
 
         public bool CanParse(Type settingValueType)
         {
-            return typeof (Uri).IsAssignableFrom(settingValueType);
+            return typeof(Uri).IsAssignableFrom(settingValueType);
         }
 
         public object Parse(Type settingValueType, string settingValueString)

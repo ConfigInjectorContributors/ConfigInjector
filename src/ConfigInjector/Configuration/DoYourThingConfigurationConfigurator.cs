@@ -58,8 +58,8 @@ namespace ConfigInjector.Configuration
         public DoYourThingConfigurationConfigurator ExcludeSettingKeys(params string[] settingKeys)
         {
             var rules = settingKeys
-                .Select(settingKey => (Func<string, bool>)(k => settingKey == k))
-                .ToArray();
+                        .Select(settingKey => (Func<string, bool>) (k => settingKey == k))
+                        .ToArray();
             _exclusionRules.AddRange(rules);
             return this;
         }
@@ -69,7 +69,6 @@ namespace ConfigInjector.Configuration
             _exclusionRules.Add(exclusionRule);
             return this;
         }
-
 
         /// <summary>
         /// This allows you to substitute your own application settings reader. A good use case for this is in having a unit/convention

@@ -7,25 +7,20 @@ namespace ConfigInjector.Exceptions
     [Serializable]
     public class ConfigurationSettingValidationException : ConfigurationException
     {
-        private readonly IEnumerable<string> _validationErrors;
-
         public ConfigurationSettingValidationException()
         {
         }
 
         public ConfigurationSettingValidationException(string[] validationErrors) : base(BuildMessageFromValidationErrors(validationErrors))
         {
-            _validationErrors = validationErrors;
+            ValidationErrors = validationErrors;
         }
 
         protected ConfigurationSettingValidationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 
-        public IEnumerable<string> ValidationErrors
-        {
-            get { return _validationErrors; }
-        }
+        public IEnumerable<string> ValidationErrors { get; }
 
         private static string BuildMessageFromValidationErrors(IEnumerable<string> validationErrors)
         {

@@ -20,6 +20,7 @@ namespace ConfigInjector.Exceptions
                 sb.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
                 sb.AppendLine();
             }
+
             return sb.ToString();
         }
     }

@@ -7,7 +7,8 @@ namespace ConfigInjector.Extensions
         public static T WithData<T>(this T exception, string key, object value) where T : Exception
         {
             exception.Data[key] = value;
-            return exception; ;
+            return exception;
+            ;
         }
     }
 }

@@ -15,9 +15,9 @@ namespace ConfigInjector.Infrastructure
         public SettingValueConverter(params IValueParser[] customValueParsers)
         {
             _valueParsers = LoadValueParsers()
-                .Union(customValueParsers)
-                .OrderBy(vp => vp.SortOrder)
-                .ToArray();
+                            .Union(customValueParsers)
+                            .OrderBy(vp => vp.SortOrder)
+                            .ToArray();
         }
 
         private static IEnumerable<IValueParser> LoadValueParsers()
@@ -52,8 +52,8 @@ namespace ConfigInjector.Infrastructure
             catch (Exception exc)
             {
                 throw new SettingParsingException("The value for this setting could not be parsed from the given text string", exc)
-                    .WithData("SettingValueType", settingValueType)
-                    .WithData("SettingValue", settingValueString);
+                      .WithData("SettingValueType", settingValueType)
+                      .WithData("SettingValue", settingValueString);
             }
         }
     }
