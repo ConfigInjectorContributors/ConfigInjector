@@ -9,6 +9,7 @@
     <PackageTags>config configuration setting application ConfigurationManager Autofac Windsor Ninject</PackageTags>
     <PackageProjectUrl>https://github.com/uglybugger/ConfigInjector</PackageProjectUrl>
     <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageVersion>1.0.0.0</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
