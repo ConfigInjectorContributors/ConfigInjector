@@ -1,4 +1,6 @@
 version: 2.3.{build}.0
+skip_tags: true
+image: Visual Studio 2017
 configuration: Release
 assembly_info:
   patch: true
@@ -36,3 +38,8 @@ deploy:
   symbol_server: https://www.myget.org/F/config-injector/symbols/api/v2/package
   on:
     branch: master
+notifications:
+- provider: GitHubPullRequest
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
