@@ -2,6 +2,6 @@
 {
     public interface ISettingsOverrider
     {
-        bool TryFindOverrideFor(string key, out string value);
+        T Override<T>(T setting) where T : IConfigurationSetting;
     }
 }

@@ -2,10 +2,9 @@
 {
     public class NoOpSettingsOverrider : ISettingsOverrider
     {
-        public bool TryFindOverrideFor(string key, out string value)
+        public T Override<T>(T setting) where T : IConfigurationSetting
         {
-            value = null;
-            return false;
+            return setting;
         }
     }
 }

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigInjector.Containers.Autofac\ConfigInjector.Containers.Autofac.csproj" />
+    <ProjectReference Include="..\ConfigInjector.Sources.DotNet\ConfigInjector.Sources.DotNet.csproj" />
+    <ProjectReference Include="..\ConfigInjector.Sources.Object\ConfigInjector.Sources.Object.csproj" />
+    <ProjectReference Include="..\ConfigInjector\ConfigInjector.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\..\..\Users\andrewh\.nuget\packages\autofac\4.8.1\lib\netstandard1.1\Autofac.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

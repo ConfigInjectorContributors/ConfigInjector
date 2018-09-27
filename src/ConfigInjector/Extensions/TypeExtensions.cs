@@ -16,5 +16,14 @@ namespace ConfigInjector.Extensions
         {
             return typeof(TTarget).IsAssignableFrom(type);
         }
+
+        internal static bool IsClosedTypeOf(this Type type, Type genericType)
+        {
+            var baseType = type.BaseType;
+            if (baseType == null) return false;
+            if (!baseType.IsGenericType) return false;
+            var isClosedTypeOf = (baseType.GetGenericTypeDefinition() == genericType);
+            return isClosedTypeOf;
+        }
     }
 }

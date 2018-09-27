@@ -4,11 +4,23 @@ namespace ConfigInjector.Infrastructure.Logging
 {
     public class NullLogger : IConfigInjectorLogger
     {
-        public void Log(string template, params object[] args)
+        public void Debug(string template, params object[] args)
         {
         }
 
-        public void Log(Exception exception, string template, params object[] args)
+        public void Warn(string template, params object[] args)
+        {
+        }
+
+        public void Warn(Exception exception, string template, params object[] args)
+        {
+        }
+
+        public void Error(string template, params object[] args)
+        {
+        }
+
+        public void Error(Exception exception, string template, params object[] args)
         {
         }
     }
