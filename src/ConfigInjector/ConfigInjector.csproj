@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net452;netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <Description>A simple way to inject strongly-typed configuration settings into your application via [web|app].config.</Description>
     <Copyright>Copyright 2013-2015 Andrew Harcourt</Copyright>
     <Company>Andrew Harcourt</Company>
